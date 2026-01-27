@@ -1,0 +1,42 @@
+[
+    {
+        "match_id": 0,
+        "municipality": "Maarkedal",
+        "permit_geometry": "POLYGON ((96145.123 165812.987, 96155.456 165812.987, 96155.456 165823.123, 96145.123 165823.123, 96145.123 165812.987))",
+        "permit_data": {
+            "referentie_project": "OMV_2024001234",
+            "dossier_id": "1234567",
+            "project_naam": "Bouwen van een nieuwe woning",
+            "datum_indiening": "2024-01-15T00:00:00",
+            "status": "In behandeling",
+            "type": "Stedenbouwkundige handelingen"
+        },
+        "road_data": {
+            "atlas_link": "Buurtweg nr. 17",
+            "status": "Geregistreerd",
+            "gemeente": "Maarkedal",
+            "type": "Voetweg"
+        },
+        "map_file": "match_OMV_2024001234_0.html"
+    },
+    {
+        "match_id": 1,
+        "municipality": "Oudenaarde",
+        "permit_geometry": "POLYGON ((98100.000 170200.000, 98120.000 170200.000, 98120.000 170250.000, 98100.000 170250.000, 98100.000 170200.000))",
+        "permit_data": {
+            "referentie_project": "OMV_2024005678",
+            "dossier_id": "8901234",
+            "project_naam": "Vellen van bomen",
+            "datum_indiening": "2024-01-20T00:00:00",
+            "status": "Vergund",
+            "type": "Natuur"
+        },
+        "road_data": {
+            "atlas_link": "Buurtweg nr. 5",
+            "status": "Gewijzigd",
+            "gemeente": "Oudenaarde",
+            "type": "Aardeweg"
+        },
+        "map_file": "match_OMV_2024005678_1.html"
+    }
+]

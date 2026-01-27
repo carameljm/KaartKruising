@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Monitor Maarkedal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { height: 100vh; width: 100vw; background: #f0f0f0; }
+        #log { position: absolute; top: 10px; left: 50px; z-index: 2000; background: rgba(0,0,0,0.7); color: white; padding: 5px; font-size: 10px; max-width: 80%; }
+    </style>
+</head>
+<body>
+    <div id="log">Laden...</div>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const logger = document.getElementById('log');
+        var map = L.map('map').setView([50.78, 3.63], 13);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OSM' }).addTo(map);
+
+        function load(file, style, isMatch = false) {
+            fetch(file + '?t=' + Date.now())
+                .then(res => res.json())
+                .then(data => {
+                    logger.innerText += `\nOK: ${file}`;
+                    L.geoJSON(data, {
+                        style: style,
+                        onEachFeature: (f, l) => {
+                            if(isMatch) {
+                                const id = f.properties.dossierid || f.properties.dossier_id;
+                                l.bindPopup(`Dossier: ${id}<br><a href="${f.properties.Link}" target="_blank">Loket</a>`);
+                            }
+                        }
+                    }).addTo(map);
+                })
+                .catch(e => logger.innerText += `\nFOUT: ${file}`);
+        }
+
+        // We laden nu het kleine bestand!
+        load('wegen_regio.geojson', { color: "#3388ff", weight: 3 });
+        load('matches.geojson', { color: "red", fillOpacity: 0.5 }, true);
+    </script>
+</body>
+</html>

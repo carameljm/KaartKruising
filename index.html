@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kruising Checker | Geo-Insights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Kaart Kruisingen</h1>
+            <p>Intelligence platform for monitoring environmental permits intersecting with community paths in Flanders.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="stats-grid" id="stats-container">
+            <div class="stat-card">
+                <div class="stat-value" id="total-matches">-</div>
+                <div class="stat-label">Total Matches</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="recent-matches">-</div>
+                <div class="stat-label">This Week</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="mun-count">-</div>
+                <div class="stat-label">Municipalities</div>
+            </div>
+        </section>
+
+        <section class="controls">
+            <input type="text" id="search" class="search-box" placeholder="Search by Project ID...">
+            <select id="municipality-filter" class="filter-box">
+                <option value="">All Municipalities</option>
+            </select>
+        </section>
+
+        <div class="matches-grid" id="matches-grid">
+            <!-- Matches will be injected here -->
+        </div>
+    </main>
+
+    <script>
+        // Load Lucide icons
+        lucide.createIcons();
+
+        async function loadDashboard() {
+            try {
+                // In a real environment, this would be output_maps/matches.json
+                // But for the sake of the demo, we should handle cases where data isn't there yet
+                const response = await fetch('output_maps/matches.json');
+                const matches = await response.json();
+
+                renderStats(matches);
+                renderFilters(matches);
+                renderMatches(matches);
+
+                // Add search logic
+                document.getElementById('search').addEventListener('input', (e) => filterData(matches));
+                document.getElementById('municipality-filter').addEventListener('change', (e) => filterData(matches));
+
+            } catch (error) {
+                console.error('Error loading matches:', error);
+                document.getElementById('matches-grid').innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(255,0,0,0.1); border-radius: 20px;">
+                        <h3>Geen data gevonden</h3>
+                        <p>Zorg ervoor dat de kruising_checker.py is uitgevoerd en dat matches.json in output_maps staat.</p>
+                    </div>`;
+            }
+        }
+
+        function renderStats(matches) {
+            document.getElementById('total-matches').innerText = matches.length;
+
+            const municipalities = new Set(matches.map(m => m.municipality));
+            document.getElementById('mun-count').innerText = municipalities.size;
+
+            // Simple mock for "This Week" (all of them for now)
+            document.getElementById('recent-matches').innerText = matches.length;
+        }
+
+        function renderFilters(matches) {
+            const munFilter = document.getElementById('municipality-filter');
+            const municipalities = [...new Set(matches.map(m => m.municipality))].sort();
+
+            municipalities.forEach(mun => {
+                const opt = document.createElement('option');
+                opt.value = mun;
+                opt.textContent = mun;
+                munFilter.appendChild(opt);
+            });
+        }
+
+        function renderMatches(matches) {
+            const grid = document.getElementById('matches-grid');
+            grid.innerHTML = '';
+
+            matches.forEach(match => {
+                const pData = match.permit_data;
+                const rData = match.road_data;
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.innerHTML = `
+                    <a href="output_maps/${match.map_file}" target="_blank" class="card-map-link">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.3"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+                    </a>
+                    <div class="card-content">
+                        <span class="card-municipality">${match.municipality}</span>
+                        <h3 class="card-title">${pData.projectnummer || pData.referentie_project || 'Onbekend Project'}</h3>
+                        <p class="card-details">${pData.handeling_omschrijving || 'Geen omschrijving beschikbaar'}</p>
+                        <div style="margin-top: 15px; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;">
+                            <strong>Weg:</strong> ${rData.road_name || rData.NR || 'Onbekende buurtweg'} (${rData.bron_bestand || 'Atlas'})
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span style="font-size: 0.75rem; color: var(--text-dim)">Datum: ${pData.datum_indiening || 'Onbekend'} • <strong>${pData.inzage_status || 'Gevalideerd'}</strong></span>
+                        <a href="${pData.inzageloket_link || pData.project_link || '#'}" target="_blank" class="btn-icon" title="View in Inzageloket">
+                            <i data-lucide="external-link" style="width: 18px"></i>
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function filterData(matches) {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const munFilter = document.getElementById('municipality-filter').value;
+
+            const filtered = matches.filter(m => {
+                const matchesSearch = (m.permit_data.projectnummer || '').toLowerCase().includes(searchTerm) ||
+                    (m.permit_data.referentie_project || '').toLowerCase().includes(searchTerm);
+                const matchesMun = munFilter === "" || m.municipality === munFilter;
+                return matchesSearch && matchesMun;
+            });
+
+            renderMatches(filtered);
+        }
+
+        loadDashboard();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0e773d97c0ef3c88642d407bbd847e1a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_0e773d97c0ef3c88642d407bbd847e1a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_0e773d97c0ef3c88642d407bbd847e1a = L.map(
+                "map_0e773d97c0ef3c88642d407bbd847e1a",
+                {
+                    center: [50.84500000252477, 4.354999995909196],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 17,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_aa5eef910d48e6a5ba0fd360ec0b3771 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_aa5eef910d48e6a5ba0fd360ec0b3771.addTo(map_0e773d97c0ef3c88642d407bbd847e1a);
+        
+    
+        function geo_json_db68c5d1a0735ab151f7e3631195e1aa_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "green", "opacity": 0.5, "weight": 1};
+            }
+        }
+
+        function geo_json_db68c5d1a0735ab151f7e3631195e1aa_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_db68c5d1a0735ab151f7e3631195e1aa = L.geoJson(null, {
+                onEachFeature: geo_json_db68c5d1a0735ab151f7e3631195e1aa_onEachFeature,
+            
+                style: geo_json_db68c5d1a0735ab151f7e3631195e1aa_styler,
+            ...{
+}
+        });
+
+        function geo_json_db68c5d1a0735ab151f7e3631195e1aa_add (data) {
+            geo_json_db68c5d1a0735ab151f7e3631195e1aa
+                .addData(data);
+        }
+            geo_json_db68c5d1a0735ab151f7e3631195e1aa_add({"bbox": [4.339999995912897, 50.84500000252308, 4.369999995905495, 50.84500000252643], "features": [{"bbox": [4.339999995912897, 50.84500000252308, 4.369999995905495, 50.84500000252643], "geometry": {"coordinates": [[4.339999995912897, 50.84500000252308], [4.369999995905495, 50.84500000252643]], "type": "LineString"}, "id": "0", "properties": {"road_id": "R001", "road_name": "Main St"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_db68c5d1a0735ab151f7e3631195e1aa.addTo(map_0e773d97c0ef3c88642d407bbd847e1a);
+        
+    
+            var macro_element_766ac0197e256c423a1d0968214d6ed0 = L.tileLayer.wms(
+                "https://geoservices.informatievlaanderen.be/overdrachtdienst/AtlasBuurtwegen/wms",
+                {"attribution": "\u00a9 Digitaal Vlaanderen", "format": "image/png", "layers": "AtlasBuurtwegen", "styles": "", "transparent": true, "version": "1.1.1"}
+            );
+        
+    
+            var macro_element_95bf418b01fc8737fcf88afe39ae4e5a = L.tileLayer.wms(
+                "https://geo.api.vlaanderen.be/Luchtfoto/wms",
+                {"attribution": "\u00a9 Digitaal Vlaanderen", "format": "image/png", "layers": "Luchtfoto", "styles": "", "transparent": true, "version": "1.1.1"}
+            );
+        
+    
+        function geo_json_8eab79a2dd7ac9d5579a872e0eb321c8_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "#ff7800", "fillColor": "#ff7800", "fillOpacity": 0.4};
+            }
+        }
+
+        function geo_json_8eab79a2dd7ac9d5579a872e0eb321c8_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_8eab79a2dd7ac9d5579a872e0eb321c8 = L.geoJson(null, {
+                onEachFeature: geo_json_8eab79a2dd7ac9d5579a872e0eb321c8_onEachFeature,
+            
+                style: geo_json_8eab79a2dd7ac9d5579a872e0eb321c8_styler,
+            ...{
+}
+        });
+
+        function geo_json_8eab79a2dd7ac9d5579a872e0eb321c8_add (data) {
+            geo_json_8eab79a2dd7ac9d5579a872e0eb321c8
+                .addData(data);
+        }
+            geo_json_8eab79a2dd7ac9d5579a872e0eb321c8_add({"bbox": [4.349999995909902, 50.84000000252566, 4.3599999959084945, 50.85000000252388], "features": [{"bbox": [4.349999995909902, 50.84000000252566, 4.3599999959084945, 50.85000000252388], "geometry": {"coordinates": [[[4.349999995909902, 50.84000000252566], [4.359999995907433, 50.84000000252679], [4.3599999959084945, 50.85000000252388], [4.34999999591096, 50.85000000252275], [4.349999995909902, 50.84000000252566]]], "type": "Polygon"}, "id": "0", "properties": {}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_8eab79a2dd7ac9d5579a872e0eb321c8.bindTooltip(
+                `<div>
+                     Omgevingsvergunning
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_67c9470fc9b25430cbab08f29efd802d = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_fc02f3f36fef3b3228be9df5064830a5 = $(`<div id="html_fc02f3f36fef3b3228be9df5064830a5" style="width: 100.0%; height: 100.0%;"><h4>Omgevingsvergunning Data</h4><table style='width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px;'><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>projectnummer</td><td style='padding: 4px;'>P001_Match</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>status</td><td style='padding: 4px;'>Open</td></tr></table></div>`)[0];
+                popup_67c9470fc9b25430cbab08f29efd802d.setContent(html_fc02f3f36fef3b3228be9df5064830a5);
+            
+        
+
+        geo_json_8eab79a2dd7ac9d5579a872e0eb321c8.bindPopup(popup_67c9470fc9b25430cbab08f29efd802d)
+        ;
+
+        
+    
+    
+            geo_json_8eab79a2dd7ac9d5579a872e0eb321c8.addTo(map_0e773d97c0ef3c88642d407bbd847e1a);
+        
+    
+        function geo_json_5bdc1f8e65685049829e18950db2ebda_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "blue", "weight": 5};
+            }
+        }
+
+        function geo_json_5bdc1f8e65685049829e18950db2ebda_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_5bdc1f8e65685049829e18950db2ebda = L.geoJson(null, {
+                onEachFeature: geo_json_5bdc1f8e65685049829e18950db2ebda_onEachFeature,
+            
+                style: geo_json_5bdc1f8e65685049829e18950db2ebda_styler,
+            ...{
+}
+        });
+
+        function geo_json_5bdc1f8e65685049829e18950db2ebda_add (data) {
+            geo_json_5bdc1f8e65685049829e18950db2ebda
+                .addData(data);
+        }
+            geo_json_5bdc1f8e65685049829e18950db2ebda_add({"bbox": [4.339999995912897, 50.84500000252308, 4.369999995905495, 50.84500000252643], "features": [{"bbox": [4.339999995912897, 50.84500000252308, 4.369999995905495, 50.84500000252643], "geometry": {"coordinates": [[4.339999995912897, 50.84500000252308], [4.369999995905495, 50.84500000252643]], "type": "LineString"}, "id": "0", "properties": {}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_5bdc1f8e65685049829e18950db2ebda.bindTooltip(
+                `<div>
+                     Buurtweg (onbekend)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_1ffa6aae44e72d6c6aafc5ea128f98c1 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_a493d4a9f75cfcd7b513c79beda7b005 = $(`<div id="html_a493d4a9f75cfcd7b513c79beda7b005" style="width: 100.0%; height: 100.0%;"><h4>Buurtweg Data (Match)</h4><table style='width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px;'><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>road_id</td><td style='padding: 4px;'>R001</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>road_name</td><td style='padding: 4px;'>Main St</td></tr></table></div>`)[0];
+                popup_1ffa6aae44e72d6c6aafc5ea128f98c1.setContent(html_a493d4a9f75cfcd7b513c79beda7b005);
+            
+        
+
+        geo_json_5bdc1f8e65685049829e18950db2ebda.bindPopup(popup_1ffa6aae44e72d6c6aafc5ea128f98c1)
+        ;
+
+        
+    
+    
+            geo_json_5bdc1f8e65685049829e18950db2ebda.addTo(map_0e773d97c0ef3c88642d407bbd847e1a);
+        
+    
+            var layer_control_dffb03bc8c01a718b969f48e3622d4bf_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_aa5eef910d48e6a5ba0fd360ec0b3771,
+                },
+                overlays :  {
+                    "Buurtwegen (Context)" : geo_json_db68c5d1a0735ab151f7e3631195e1aa,
+                    "Atlas der Buurtwegen (1841)" : macro_element_766ac0197e256c423a1d0968214d6ed0,
+                    "Luchtfoto (Vlaanderen)" : macro_element_95bf418b01fc8737fcf88afe39ae4e5a,
+                    "Omgevingsvergunning" : geo_json_8eab79a2dd7ac9d5579a872e0eb321c8,
+                    "Buurtweg (Match)" : geo_json_5bdc1f8e65685049829e18950db2ebda,
+                },
+            };
+            let layer_control_dffb03bc8c01a718b969f48e3622d4bf = L.control.layers(
+                layer_control_dffb03bc8c01a718b969f48e3622d4bf_layers.base_layers,
+                layer_control_dffb03bc8c01a718b969f48e3622d4bf_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_0e773d97c0ef3c88642d407bbd847e1a);
+
+        
+</script>
+</html>

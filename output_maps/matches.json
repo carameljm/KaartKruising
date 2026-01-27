@@ -1,0 +1,41 @@
+[
+  {
+    "match_id": 0,
+    "municipality": "Zwalm",
+    "permit_data": {
+      "id": 958447,
+      "projectnummer": "2026005666",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bouwen of herbouwen; Functiewijziging; Het reli\u00ebf van de bodem aanmerkelijk wijzigen; Nieuwbouw van bijgebouwen, niet-overdekte lage constructies en andere handelingen; Verwijderen van vrijstaande gebouwen",
+      "aanvrager": "CROSSROADS (0446661838); Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-01-15T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-01-26T00:00:00",
+      "vvo_huidige_toestand": "Zwalm",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "I0_CkovHQh64k3_YZWevJw",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026005666",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026005666",
+      "inzage_status": "Het openbaar onderzoek loopt tot en met 20.02.2026"
+    },
+    "road_data": {
+      "ID": 16617.0,
+      "NR": "3",
+      "TYPE": "c",
+      "LENGTH": 514.97,
+      "GEMID": "138",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/138-D-001.sid",
+      "CEVI_OID": 16598,
+      "GEMEENTE": "Meilegem",
+      "DETAILPLAN": "138-D-001",
+      "TYPE_LABEL": "chemin",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "map_file": "match_2026005666.html",
+    "validated_at": "2026-01-26T11:32:38.995982"
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "match_id": 0,
+    "municipality": "Onbekend",
+    "permit_data": {
+      "projectnummer": "P001_Match",
+      "status": "Open"
+    },
+    "road_data": {
+      "road_id": "R001",
+      "road_name": "Main St"
+    },
+    "map_file": "match_P001_Match.html"
+  }
+]

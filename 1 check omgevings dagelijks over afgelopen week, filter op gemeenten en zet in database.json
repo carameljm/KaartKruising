@@ -1,0 +1,668 @@
+{
+  "name": "1 check omgevings dagelijks over afgelopen week, filter op gemeenten en zet in database",
+  "nodes": [
+    {
+      "parameters": {
+        "fieldToSplitOut": "body.matches",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        480,
+        -336
+      ],
+      "id": "e0a4ed98-448e-437f-87ae-84878f52ceac",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1152,
+        -336
+      ],
+      "id": "072161a5-1453-4c8f-9063-025d0280ed8f",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "url": "https://geo.api.vlaanderen.be/VRBG/wfs",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "service",
+              "value": "WFS"
+            },
+            {
+              "name": "version",
+              "value": "1.1.0"
+            },
+            {
+              "name": "request",
+              "value": "GetFeature"
+            },
+            {
+              "name": "typeName",
+              "value": "VRBG:Refgem"
+            },
+            {
+              "name": "outputFormat",
+              "value": "application/json"
+            },
+            {
+              "name": "srsName",
+              "value": "EPSG:31370"
+            },
+            {
+              "name": "CQL_FILTER",
+              "value": "=INTERSECTS(SHAPE, POINT({{ $json.centroid_x }} {{ $json.centroid_y }}))"
+            },
+            {
+              "name": "propertyName",
+              "value": "NAAM"
+            },
+            {
+              "name": "maxFeatures",
+              "value": "1"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        704,
+        -272
+      ],
+      "id": "3c75f8b5-f04e-4be5-bbff-347eab3c14f2",
+      "name": "zoek de gemeente of stad op op basis van coordinaat"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3b9b65d7-2f58-41b7-88ea-28431c899830",
+              "name": "stadofgemeente",
+              "value": "={{ $json.features[0]?.properties.NAAM || 'Niet gevonden' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        928,
+        -272
+      ],
+      "id": "1049f0c2-7af4-44d7-bf4b-59699ae8624a",
+      "name": "clean up naar stadofgemeente"
+    },
+    {
+      "parameters": {
+        "jsCode": "const toegestaneGemeenten = [\n  \"Anzegem\", \"Avelgem\", \"Brakel\", \"Deinze\", \"Gavere\", \n  \"Geraardsbergen\", \"Horebeke\", \"Kluisbergen\", \"Kruisem\", \n  \"Lierde\", \"Maarkedal\", \"Nazareth-De Pinte\", \"Oudenaarde\", \n  \"Ronse\", \"Waregem\", \"Wortegem-Petegem\", \"Zottegem\", \"Zulte\", \"Zwalm\"\n];\n\n// Filter de binnenkomende items\nreturn items.filter(item => {\n  const stad = item.json.stadofgemeente;\n  return toegestaneGemeenten.includes(stad);\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        -336
+      ],
+      "id": "cee99d1d-fadc-4cde-bc96-7b435101eee8",
+      "name": "filteren op toegestane gemeenten"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4fc21c8c-65a9-478f-b11b-26332c692053",
+              "name": "idnr",
+              "value": "={{ $json.id }}",
+              "type": "number"
+            },
+            {
+              "id": "8a007a29-39df-443c-9f51-dce29dc7d6d6",
+              "name": "LINKweg",
+              "value": "={{ $json.LINK }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "include": "except",
+        "excludeFields": "id, LINK",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1376,
+        -336
+      ],
+      "id": "9d729613-7cbe-4527-91e2-45fb5bbc53fe",
+      "name": "wijzigen namen twee velden voor in datatables"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ndYN6otHthF7G1nl",
+          "mode": "list",
+          "cachedResultName": "geokruisdossiers",
+          "cachedResultUrl": "/projects/itbOn6N1Nosz7Q8d/datatables/ndYN6otHthF7G1nl"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "projectnummer",
+              "keyValue": "={{ $json.projectnummer }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "idnr",
+              "displayName": "idnr",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "projectnummer",
+              "displayName": "projectnummer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "project_type_code",
+              "displayName": "project_type_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "handeling_omschrijving",
+              "displayName": "handeling_omschrijving",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "aanvrager",
+              "displayName": "aanvrager",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "omschrijving_projecttype",
+              "displayName": "omschrijving_projecttype",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "datum_indiening",
+              "displayName": "datum_indiening",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "huidige_toestand",
+              "displayName": "huidige_toestand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "datum_huidige_toestand",
+              "displayName": "datum_huidige_toestand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "vvo_huidige_toestand",
+              "displayName": "vvo_huidige_toestand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "fase_huidige_toestand",
+              "displayName": "fase_huidige_toestand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "voorwerp_uuid",
+              "displayName": "voorwerp_uuid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "project_link",
+              "displayName": "project_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "NR",
+              "displayName": "NR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TYPE",
+              "displayName": "TYPE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "LENGTH",
+              "displayName": "LENGTH",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "GEMID",
+              "displayName": "GEMID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PLANID",
+              "displayName": "PLANID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "CEVI_OID",
+              "displayName": "CEVI_OID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "GEMEENTE",
+              "displayName": "GEMEENTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "DETAILPLAN",
+              "displayName": "DETAILPLAN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TYPE_LABEL",
+              "displayName": "TYPE_LABEL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "bron_laag",
+              "displayName": "bron_laag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "IDWIJZIGIN",
+              "displayName": "IDWIJZIGIN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "DATUM",
+              "displayName": "DATUM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "LINKweg",
+              "displayName": "LINKweg",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "x_coordinaat",
+              "displayName": "x_coordinaat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "y_coordinaat",
+              "displayName": "y_coordinaat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "stadofgemeente",
+              "displayName": "stadofgemeente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1808,
+        -336
+      ],
+      "id": "29a18af0-8583-4a9f-a250-8922edb8f2a6",
+      "name": "Upsert row(s)",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "7b7ea0c7-9f50-4712-b922-f9e67cd657fa",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        240,
+        -336
+      ],
+      "id": "c6375010-7f70-4f6a-a991-6869604d29b9",
+      "name": "Webhook",
+      "webhookId": "7b7ea0c7-9f50-4712-b922-f9e67cd657fa"
+    },
+    {
+      "parameters": {
+        "content": "dubbele filteren en verschillende kruisen in database",
+        "height": 288,
+        "width": 432
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1520,
+        -432
+      ],
+      "typeVersion": 1,
+      "id": "77309e04-6c9d-4806-a712-17c0cbe45429",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "zoek de gemeente of stad op op basis van coordinaat",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "wijzigen namen twee velden voor in datatables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "zoek de gemeente of stad op op basis van coordinaat": {
+      "main": [
+        [
+          {
+            "node": "clean up naar stadofgemeente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean up naar stadofgemeente": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "wijzigen namen twee velden voor in datatables": {
+      "main": [
+        [
+          {
+            "node": "filteren op toegestane gemeenten",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filteren op toegestane gemeenten": {
+      "main": [
+        [
+          {
+            "node": "Upsert row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert row(s)": {
+      "main": [
+        []
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "3UxnMFaaE3tvpnlX5wd5o"
+  },
+  "versionId": "4998556d-72c0-4ec7-88cb-110976e433a9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "22917db8acdcd33e43dcf72756693e654c13581bf1e19a2547ce396e17f3c8a6"
+  },
+  "id": "eTtcz9BME4sBaW6A",
+  "tags": [
+    {
+      "updatedAt": "2026-01-14T11:44:37.544Z",
+      "createdAt": "2026-01-14T11:44:37.544Z",
+      "id": "whxGAHDbnJVCOoNX",
+      "name": "geo"
+    },
+    {
+      "updatedAt": "2026-01-14T11:44:43.969Z",
+      "createdAt": "2026-01-14T11:44:43.969Z",
+      "id": "Mqw7kHiuxSA6mSDm",
+      "name": "omgeving"
+    }
+  ]
+}

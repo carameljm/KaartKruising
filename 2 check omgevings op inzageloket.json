@@ -1,0 +1,490 @@
+{
+  "name": "2 check omgevings op inzageloket",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://omgevingsloketinzage.omgeving.vlaanderen.be/proxy-omv-up/rs/v1/inzage/projecten/header",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "projectnummer",
+              "value": "={{ $json.projectnummer }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Referer",
+              "value": "=https://omgevingsloketinzage.omgeving.vlaanderen.be/{{ $json.projectnummer }}"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1488,
+        -656
+      ],
+      "id": "4d91ab4f-f704-4d14-870a-62cba9273810",
+      "name": "HTTP Request",
+      "notesInFlow": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * Dit script verwerkt de binnenkomende JSON data van een HTTP request:\n * 1. Verwijdert duplicaten op basis van de unieke 'uuid'.\n * 2. Extraheert de datum uit de 'toestand' string.\n * 3. Sorteert de resultaten chronologisch op datum.\n */\n\n// Haal de input data op (meestal in het eerste item bij n8n)\nconst items = Array.isArray($input.all()) ? $input.all() : [];\nconst data = items.map(i => i.json);\n\n// 1. Duplicaten verwijderen op basis van UUID\nconst uniqueMap = new Map();\ndata.forEach(item => {\n  if (!uniqueMap.has(item.uuid)) {\n    uniqueMap.set(item.uuid, item);\n  }\n});\n\nconst uniqueData = Array.from(uniqueMap.values());\n\n// Hulpfunctie om datum uit de tekst te extraheren (bijv. \"23.01.2026\")\nconst parseDate = (text) => {\n  const dateMatch = text.match(/(\\d{2})\\.(\\d{2})\\.(\\d{4})/);\n  if (dateMatch) {\n    const [_, day, month, year] = dateMatch;\n    // Maak een Date object (maand is 0-indexed in JS)\n    return new Date(year, month - 1, day);\n  }\n  // Als er geen datum is (zoals \"nog niet bepaald\"), zet deze achteraan\n  return new Date(9999, 11, 31);\n};\n\n// 2. Sorteren op datum\nuniqueData.sort((a, b) => {\n  return parseDate(a.toestand) - parseDate(b.toestand);\n});\n\n// Retourneer de data in het n8n formaat\nreturn uniqueData.map(item => ({ json: item }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1936,
+        -720
+      ],
+      "id": "e2dc4bd8-708f-49ed-a75a-d4469fbfb5c4",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "url": "=https://omgevingsloketinzage.omgeving.vlaanderen.be/proxy-omv-up/rs/v1/inzage/projecten/{{ $json.uuid }}/project-overzicht",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "projectnummer",
+              "value": "={{ $json.projectnummer }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Referer",
+              "value": "=https://omgevingsloketinzage.omgeving.vlaanderen.be/{{ $json.projectnummer }}"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2160,
+        -656
+      ],
+      "id": "e0482299-1bca-4a82-b6fa-45bcc593c1c0",
+      "name": "HTTP Request1",
+      "notesInFlow": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "39d4ec5b-7782-44f2-a27a-8c4508548736",
+              "name": "inzageloket",
+              "value": "=https://omgevingsloketinzage.omgeving.vlaanderen.be/{{ $json.projectnummer }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1264,
+        -720
+      ],
+      "id": "0f0fe2ff-e7e2-4f1c-aa53-08d3c4825ee3",
+      "name": "Maak link inzageloket aan"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "fieldsToMatchString": "projectnummer",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1712,
+        -720
+      ],
+      "id": "b0439b28-990c-4aa5-8a4f-34f2010017e0",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "fieldsToMatchString": "projectnummer",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2384,
+        -720
+      ],
+      "id": "c94d69d5-350d-4373-a896-61807ffb494a",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": []
+        },
+        "includeOtherFields": true,
+        "include": "selected",
+        "includeFields": "idnr, inzageloket",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2832,
+        -720
+      ],
+      "id": "1e3edc67-991d-42cf-b83e-aac771ed3e68",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "sendTo": "jeroen.meirlaen@gmail.com",
+        "subject": "Nieuw Openbaar onderzoek kruist weg",
+        "message": "=Er is een nieuw openbaar onderzoek in {{ $json.stadofgemeente }} dat een weg kruist. <br><br>\n\nHet betreft een {{ $json.omschrijving_projecttype }} bij vergunningsverlenende overheid {{ $json.vvo_huidige_toestand }}.\nDe aanvraag kruist met {{ $json.TYPE_LABEL }} {{ $json.NR }} in {{ $json.GEMEENTE }} <br><br>\n\nDe aanvraag heet \"{{ $json.projectnaam }}\" <br>\n<b>{{ $json.toestand }} </b><br>\nElke betrokkene kan {{ $json.beroepOfBezwaar }} indienen via het inzageloket: <br> {{ $json.inzageloket }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2832,
+        -960
+      ],
+      "id": "b64193bb-19c2-4f54-8886-3dd8fc38d5de",
+      "name": "Send a message",
+      "webhookId": "492cfa83-b8b4-4524-924d-58d02dadbf7f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "2YIwIOa4M0GsxrZ6",
+          "name": "Gmail account jeroen.meirlaen"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ndYN6otHthF7G1nl",
+          "mode": "list",
+          "cachedResultName": "geokruisdossiers",
+          "cachedResultUrl": "/projects/itbOn6N1Nosz7Q8d/datatables/ndYN6otHthF7G1nl"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1024,
+        -720
+      ],
+      "id": "4fb55d6d-08bc-428d-9d89-46b2ce2ebc81",
+      "name": "Get row(s)"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        832,
+        -720
+      ],
+      "id": "a778f2f4-05aa-4309-b09f-a3ea7db0cc66",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "rowNotExists",
+        "dataTableId": {
+          "__rl": true,
+          "value": "5482CpTOdhHoIxOi",
+          "mode": "list",
+          "cachedResultName": "inzageloket",
+          "cachedResultUrl": "/projects/itbOn6N1Nosz7Q8d/datatables/5482CpTOdhHoIxOi"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "inzageloket",
+              "keyValue": "={{ $json.inzageloket }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        2592,
+        -720
+      ],
+      "id": "9edac668-bea2-4c8b-a558-110b61d459ca",
+      "name": "If row does not exist"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "5482CpTOdhHoIxOi",
+          "mode": "list",
+          "cachedResultName": "inzageloket",
+          "cachedResultUrl": "/projects/itbOn6N1Nosz7Q8d/datatables/5482CpTOdhHoIxOi"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "idnr": 0
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "idnr",
+              "displayName": "idnr",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "inzageloket",
+              "displayName": "inzageloket",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        3056,
+        -720
+      ],
+      "id": "ad6dd81a-978d-4f7a-9516-c2a45619f4ca",
+      "name": "Insert row",
+      "alwaysOutputData": false
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Maak link inzageloket aan": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "If row does not exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "Maak link inzageloket aan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If row does not exist": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "3UxnMFaaE3tvpnlX5wd5o"
+  },
+  "versionId": "aab577b3-a7d4-4f97-abcb-28f2b0eab9bb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "22917db8acdcd33e43dcf72756693e654c13581bf1e19a2547ce396e17f3c8a6"
+  },
+  "id": "suKTXYWJUWn3YrIE",
+  "tags": [
+    {
+      "updatedAt": "2026-01-14T11:44:43.969Z",
+      "createdAt": "2026-01-14T11:44:43.969Z",
+      "id": "Mqw7kHiuxSA6mSDm",
+      "name": "omgeving"
+    }
+  ]
+}

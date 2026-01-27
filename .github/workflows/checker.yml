@@ -1,0 +1,42 @@
+name: Kruising Checker Pipeline
+
+on:
+  schedule:
+    - cron: "0 3 * * *" # Every night at 03:00
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  run-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Kruising Checker
+        run: |
+          # We point to the current directory for roads if they are in the root of the repo
+          # Or point to the specific folder if it's a subfolder.
+          # In the ZIP provided, they were in 'buurtwegenomgevingsdossiers-main/'
+          # But in the actual repo they are likely in the root.
+          if [ -d "buurtwegenomgevingsdossiers-main" ]; then
+            python kruising_checker.py --roads-dir buurtwegenomgevingsdossiers-main --days 7 --output output_maps
+          else
+            python kruising_checker.py --roads-dir . --days 7 --output output_maps
+          fi
+
+      - name: Commit and Push Maps
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add output_maps/*.html output_maps/matches.json
+          git commit -m "Update intersection maps [skip ci]" || exit 0
+          git push
