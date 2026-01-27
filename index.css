@@ -275,3 +275,18 @@ body {
     cursor: pointer;
     font-weight: 600;
 }
+
+/* Voeg deze CSS toe aan je index.css */
+.filter-box {
+    color: #333; /* Donkere tekstkleur */
+    background-color: #fff; /* Witte achtergrondkleur */
+    border: 1px solid #ccc; /* Lichtgrijze rand */
+    border-radius: 4px; /* Afgeronde hoeken */
+    padding: 8px 12px; /* Padding binnen de dropdown */
+    font-size: 14px; /* Tekstgrootte */
+}
+
+.filter-box option {
+    color: #333; /* Donkere tekstkleur voor de opties */
+    background-color: #fff; /* Witte achtergrondkleur voor de opties */
+}
