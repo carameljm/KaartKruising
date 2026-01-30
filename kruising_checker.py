@@ -372,7 +372,7 @@ def main():
     parser = argparse.ArgumentParser(description="Full Pipeline: Check intersections between WFS Permits and Local Roads.")
     parser.add_argument("--roads-dir", default="buurtwegenomgevingsdossiers-main", help="Directory containing road GeoJSONs")
     parser.add_argument("--output", "-o", default="output_maps", help="Directory to save generated maps")
-    parser.add_argument("--days", type=int, default=7, help="Number of days to look back for permits (default: 7)")
+    parser.add_argument("--days", type=int, default=100, help="Number of days to look back for permits (default: 7)")
     
     args = parser.parse_args()
     
