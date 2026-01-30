@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_19439a4c6d41f2ab5d39dd1c173c1987 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_19439a4c6d41f2ab5d39dd1c173c1987" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_19439a4c6d41f2ab5d39dd1c173c1987 = L.map(
+                "map_19439a4c6d41f2ab5d39dd1c173c1987",
+                {
+                    center: [50.8886469170228, 3.748309810993169],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 17,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_54689e4a519effd0c23e7756401462a7 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_54689e4a519effd0c23e7756401462a7.addTo(map_19439a4c6d41f2ab5d39dd1c173c1987);
+        
+    
+            var macro_element_4f611e8d98a0e9d4858d7e05bd6f0faa = L.tileLayer.wms(
+                "https://geoservices.informatievlaanderen.be/overdrachtdienst/AtlasBuurtwegen/wms",
+                {"attribution": "\u00a9 Digitaal Vlaanderen", "format": "image/png", "layers": "AtlasBuurtwegen", "styles": "", "transparent": true, "version": "1.1.1"}
+            );
+        
+    
+            var macro_element_220734f16f107e80eaeeee1378e1ead5 = L.tileLayer.wms(
+                "https://geo.api.vlaanderen.be/Luchtfoto/wms",
+                {"attribution": "\u00a9 Digitaal Vlaanderen", "format": "image/png", "layers": "Luchtfoto", "styles": "", "transparent": true, "version": "1.1.1"}
+            );
+        
+    
+        function geo_json_7f9d37254caeb996b71dca64ee07f73d_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "#ff7800", "fillColor": "#ff7800", "fillOpacity": 0.4};
+            }
+        }
+
+        function geo_json_7f9d37254caeb996b71dca64ee07f73d_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_7f9d37254caeb996b71dca64ee07f73d = L.geoJson(null, {
+                onEachFeature: geo_json_7f9d37254caeb996b71dca64ee07f73d_onEachFeature,
+            
+                style: geo_json_7f9d37254caeb996b71dca64ee07f73d_styler,
+            ...{
+}
+        });
+
+        function geo_json_7f9d37254caeb996b71dca64ee07f73d_add (data) {
+            geo_json_7f9d37254caeb996b71dca64ee07f73d
+                .addData(data);
+        }
+            geo_json_7f9d37254caeb996b71dca64ee07f73d_add({"bbox": [3.7473223449561464, 50.888149372399305, 3.749156750944568, 50.88927710389539], "features": [{"bbox": [3.7473223449561464, 50.888149372399305, 3.749156750944568, 50.88927710389539], "geometry": {"coordinates": [[[[3.7473223449561464, 50.888149372399305], [3.748646048637018, 50.88927710389539], [3.748815842781464, 50.88919556401142], [3.7488565926251205, 50.88917600159071], [3.7489867068174245, 50.88911583645849], [3.749156750944568, 50.88904435689529], [3.7489517300424042, 50.88885057220516], [3.7482485359115403, 50.888166627337675], [3.7473223449561464, 50.888149372399305]]]], "type": "MultiPolygon"}, "id": "0", "properties": {}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_7f9d37254caeb996b71dca64ee07f73d.bindTooltip(
+                `<div>
+                     Omgevingsvergunning
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_468c46792db528a7ce2e160901dce52f = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_bd428a9bfaa4b809c5e9260e2f30d7ff = $(`<div id="html_bd428a9bfaa4b809c5e9260e2f30d7ff" style="width: 100.0%; height: 100.0%;"><h4>Omgevingsvergunning Data</h4><table style='width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px;'><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>id</td><td style='padding: 4px;'>950098</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>projectnummer</td><td style='padding: 4px;'>2025150351</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>project_type_code</td><td style='padding: 4px;'>OMV2017_VK_NIEUW</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>handeling_omschrijving</td><td style='padding: 4px;'>Nieuwe verkaveling</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>aanvrager</td><td style='padding: 4px;'>LANDMEETKANTOOR DE VUYST (0676429302); Natuurlijk perso(o)n(en)</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>omschrijving_projecttype</td><td style='padding: 4px;'>Aanvraag nieuwe verkaveling</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>datum_indiening</td><td style='padding: 4px;'>2025-12-09T00:00:00</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>huidige_toestand</td><td style='padding: 4px;'>In behandeling (in eerste aanleg)</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>datum_huidige_toestand</td><td style='padding: 4px;'>2026-01-30T00:00:00</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>vvo_huidige_toestand</td><td style='padding: 4px;'>Zwalm</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>fase_huidige_toestand</td><td style='padding: 4px;'>Eerste Aanleg</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>voorwerp_uuid</td><td style='padding: 4px;'>P_stp_1tQh6-5TahQWX0xQ</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>project_link</td><td style='padding: 4px;'><a href='https://omgevingsloket.omgeving.vlaanderen.be?project=2025150351' target='_blank'>Klik hier</a></td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>inzageloket_link</td><td style='padding: 4px;'><a href='https://omgevingsloketinzage.omgeving.vlaanderen.be/2025150351' target='_blank'>Klik hier</a></td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>inzage_status</td><td style='padding: 4px;'>Het openbaar onderzoek loopt tot en met 20.02.2026</td></tr></table></div>`)[0];
+                popup_468c46792db528a7ce2e160901dce52f.setContent(html_bd428a9bfaa4b809c5e9260e2f30d7ff);
+            
+        
+
+        geo_json_7f9d37254caeb996b71dca64ee07f73d.bindPopup(popup_468c46792db528a7ce2e160901dce52f)
+        ;
+
+        
+    
+    
+            geo_json_7f9d37254caeb996b71dca64ee07f73d.addTo(map_19439a4c6d41f2ab5d39dd1c173c1987);
+        
+    
+        function geo_json_dfdfed319c504145af71fa2389986474_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "blue", "weight": 5};
+            }
+        }
+
+        function geo_json_dfdfed319c504145af71fa2389986474_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_dfdfed319c504145af71fa2389986474 = L.geoJson(null, {
+                onEachFeature: geo_json_dfdfed319c504145af71fa2389986474_onEachFeature,
+            
+                style: geo_json_dfdfed319c504145af71fa2389986474_styler,
+            ...{
+}
+        });
+
+        function geo_json_dfdfed319c504145af71fa2389986474_add (data) {
+            geo_json_dfdfed319c504145af71fa2389986474
+                .addData(data);
+        }
+            geo_json_dfdfed319c504145af71fa2389986474_add({"bbox": [3.744876021292103, 50.885692219052395, 3.749589964434797, 50.89013711861775], "features": [{"bbox": [3.744876021292103, 50.885692219052395, 3.749589964434797, 50.89013711861775], "geometry": {"coordinates": [[3.749589964434797, 50.89013711861775], [3.7488750589760675, 50.88946815330501], [3.748844295847945, 50.88943901897933], [3.7488500374174656, 50.8894205070771], [3.748743152849063, 50.889328391954756], [3.7486725119530218, 50.88926659880589], [3.7483863198992395, 50.88901708816217], [3.747695917384525, 50.88843747837573], [3.7474240855060064, 50.88821121846036], [3.7473679510665154, 50.88816108983476], [3.7471354868944724, 50.88745178495913], [3.746395690753401, 50.88686958821641], [3.744876021292103, 50.885692219052395]], "type": "LineString"}, "id": "0", "properties": {}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_dfdfed319c504145af71fa2389986474.bindTooltip(
+                `<div>
+                     Buurtweg 1: 095-D-001 nr 15
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_fabfb746f741f014a21efaaf72340660 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_84cce7623d0de48dc9bb8b453fd3d43e = $(`<div id="html_84cce7623d0de48dc9bb8b453fd3d43e" style="width: 100.0%; height: 100.0%;"><h4>Buurtweg 1 (Match)</h4><table style='width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px;'><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>ID</td><td style='padding: 4px;'>11035.0</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>NR</td><td style='padding: 4px;'>15</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>TYPE</td><td style='padding: 4px;'>s</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>LENGTH</td><td style='padding: 4px;'>603.235</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>GEMID</td><td style='padding: 4px;'>095</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>PLANID</td><td style='padding: 4px;'><a href='https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/095-D-001.sid' target='_blank'>Klik hier</a></td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>CEVI_OID</td><td style='padding: 4px;'>11020</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>GEMEENTE</td><td style='padding: 4px;'>Hundelgem</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>DETAILPLAN</td><td style='padding: 4px;'>095-D-001</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>TYPE_LABEL</td><td style='padding: 4px;'>sentier</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>bron_bestand</td><td style='padding: 4px;'>buurtwegen</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>IDWIJZIGIN</td><td style='padding: 4px;'>None</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>DATUM</td><td style='padding: 4px;'>NaT</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>LINK</td><td style='padding: 4px;'>None</td></tr></table></div>`)[0];
+                popup_fabfb746f741f014a21efaaf72340660.setContent(html_84cce7623d0de48dc9bb8b453fd3d43e);
+            
+        
+
+        geo_json_dfdfed319c504145af71fa2389986474.bindPopup(popup_fabfb746f741f014a21efaaf72340660)
+        ;
+
+        
+    
+    
+            geo_json_dfdfed319c504145af71fa2389986474.addTo(map_19439a4c6d41f2ab5d39dd1c173c1987);
+        
+    
+            var layer_control_d3e123108f6504ec71777a5ab85c145d_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_54689e4a519effd0c23e7756401462a7,
+                },
+                overlays :  {
+                    "Atlas der Buurtwegen (1841)" : macro_element_4f611e8d98a0e9d4858d7e05bd6f0faa,
+                    "Luchtfoto (Vlaanderen)" : macro_element_220734f16f107e80eaeeee1378e1ead5,
+                    "Omgevingsvergunning" : geo_json_7f9d37254caeb996b71dca64ee07f73d,
+                    "Buurtweg 1: 095-D-001 nr 15" : geo_json_dfdfed319c504145af71fa2389986474,
+                },
+            };
+            let layer_control_d3e123108f6504ec71777a5ab85c145d = L.control.layers(
+                layer_control_d3e123108f6504ec71777a5ab85c145d_layers.base_layers,
+                layer_control_d3e123108f6504ec71777a5ab85c145d_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_19439a4c6d41f2ab5d39dd1c173c1987);
+
+        
+</script>
+</html>
