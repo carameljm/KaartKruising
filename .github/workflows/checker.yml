@@ -30,9 +30,9 @@ jobs:
           # In the ZIP provided, they were in 'buurtwegenomgevingsdossiers-main/'
           # But in the actual repo they are likely in the root.
           if [ -d "buurtwegenomgevingsdossiers-main" ]; then
-            python kruising_checker.py --roads-dir buurtwegenomgevingsdossiers-main --days 100 --output output_maps
+            python kruising_checker.py --roads-dir buurtwegenomgevingsdossiers-main --days 7 --output output_maps
           else
-            python kruising_checker.py --roads-dir . --days 100 --output output_maps
+            python kruising_checker.py --roads-dir . --days 7 --output output_maps
           fi
 
       - name: Commit and Push Maps
