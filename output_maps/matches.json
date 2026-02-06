@@ -1909,5 +1909,83 @@
     },
     "map_file": "match_2026008837.html",
     "validated_at": "2026-02-06T04:45:30.546907"
+  },
+  {
+    "match_id": 49,
+    "municipality": "Brakel",
+    "permit_data": {
+      "id": 956216,
+      "projectnummer": "2026000707",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Nieuwbouw van bijgebouwen, niet-overdekte lage constructies en andere handelingen; Slopen of verwijderen; Verbouwen / Wijzigen Infrastructuur",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-01-12T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-01-26T00:00:00",
+      "vvo_huidige_toestand": "Brakel",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "3deoqgdtSiuYgNn4-dZOuA",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026000707",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026000707",
+      "inzage_status": "Het openbaar onderzoek loopt tot en met 08.03.2026"
+    },
+    "road_data": {
+      "ID": 21380.0,
+      "NR": "24",
+      "TYPE": "c",
+      "LENGTH": 212.29,
+      "GEMID": "183",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/183-D-006.sid",
+      "CEVI_OID": 21355,
+      "GEMEENTE": "Opbrakel",
+      "DETAILPLAN": "183-D-006",
+      "TYPE_LABEL": "chemin",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "map_file": "match_2026000707.html",
+    "validated_at": "2026-02-06T10:09:09.631627"
+  },
+  {
+    "match_id": 50,
+    "municipality": "Maarkedal",
+    "permit_data": {
+      "id": 959578,
+      "projectnummer": "2026008837",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bomen vellen die geen deel uitmaken van een bos en/of bodemreli\u00ebf wijzigen",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-01-21T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-01-26T00:00:00",
+      "vvo_huidige_toestand": "Maarkedal",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "B8nfzd04SPmBTSsOwRxQZA",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026008837",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026008837",
+      "inzage_status": "De beroepsperiode loopt tot en met 05.03.2026"
+    },
+    "road_data": {
+      "ID": 20152.0,
+      "NR": "41",
+      "TYPE": "c",
+      "LENGTH": 1196.008,
+      "GEMID": "172",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/172-D-009.sid",
+      "CEVI_OID": 20127,
+      "GEMEENTE": "Nukerke",
+      "DETAILPLAN": "172-D-009",
+      "TYPE_LABEL": "chemin",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "map_file": "match_2026008837.html",
+    "validated_at": "2026-02-06T10:09:17.092342"
   }
 ]
