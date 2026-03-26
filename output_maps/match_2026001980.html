@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_a80a426c0abfa55b2b6b5e9354f4c860 {
+                #map_92bd3d7ae3f32c4525c8b0567c91e64e {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -54,14 +54,14 @@
 <body>
     
     
-            <div class="folium-map" id="map_a80a426c0abfa55b2b6b5e9354f4c860" ></div>
+            <div class="folium-map" id="map_92bd3d7ae3f32c4525c8b0567c91e64e" ></div>
         
 </body>
 <script>
     
     
-            var map_a80a426c0abfa55b2b6b5e9354f4c860 = L.map(
-                "map_a80a426c0abfa55b2b6b5e9354f4c860",
+            var map_92bd3d7ae3f32c4525c8b0567c91e64e = L.map(
+                "map_92bd3d7ae3f32c4525c8b0567c91e64e",
                 {
                     center: [51.04924386892482, 3.515572573671706],
                     crs: L.CRS.EPSG3857,
@@ -78,7 +78,7 @@
 
         
     
-            var tile_layer_8f793c70b4618600db791bff671cd19d = L.tileLayer(
+            var tile_layer_6b97a81d03cabd6912e300ed78854bcc = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -95,50 +95,50 @@
             );
         
     
-            tile_layer_8f793c70b4618600db791bff671cd19d.addTo(map_a80a426c0abfa55b2b6b5e9354f4c860);
+            tile_layer_6b97a81d03cabd6912e300ed78854bcc.addTo(map_92bd3d7ae3f32c4525c8b0567c91e64e);
         
     
-            var macro_element_6ac548f20c8a6b7a3cb10b5e52ce1963 = L.tileLayer.wms(
+            var macro_element_9161e9423bcfdeb518589b01a9e9fbf1 = L.tileLayer.wms(
                 "https://geoservices.informatievlaanderen.be/overdrachtdienst/AtlasBuurtwegen/wms",
                 {"attribution": "\u00a9 Digitaal Vlaanderen", "format": "image/png", "layers": "AtlasBuurtwegen", "styles": "", "transparent": true, "version": "1.1.1"}
             );
         
     
-            var macro_element_dabbeeef9a558cc82ade989fc326eb9a = L.tileLayer.wms(
+            var macro_element_6eed106601e3c3a5a957adde74255c1d = L.tileLayer.wms(
                 "https://geo.api.vlaanderen.be/Luchtfoto/wms",
                 {"attribution": "\u00a9 Digitaal Vlaanderen", "format": "image/png", "layers": "Luchtfoto", "styles": "", "transparent": true, "version": "1.1.1"}
             );
         
     
-        function geo_json_cd9d5d0d76fd919772877f08819e2751_styler(feature) {
+        function geo_json_d4b6afdb97b84c6ff642478051fec070_styler(feature) {
             switch(feature.id) {
                 default:
                     return {"color": "#ff7800", "fillColor": "#ff7800", "fillOpacity": 0.4};
             }
         }
 
-        function geo_json_cd9d5d0d76fd919772877f08819e2751_onEachFeature(feature, layer) {
+        function geo_json_d4b6afdb97b84c6ff642478051fec070_onEachFeature(feature, layer) {
 
             layer.on({
             });
         };
-        var geo_json_cd9d5d0d76fd919772877f08819e2751 = L.geoJson(null, {
-                onEachFeature: geo_json_cd9d5d0d76fd919772877f08819e2751_onEachFeature,
+        var geo_json_d4b6afdb97b84c6ff642478051fec070 = L.geoJson(null, {
+                onEachFeature: geo_json_d4b6afdb97b84c6ff642478051fec070_onEachFeature,
             
-                style: geo_json_cd9d5d0d76fd919772877f08819e2751_styler,
+                style: geo_json_d4b6afdb97b84c6ff642478051fec070_styler,
             ...{
 }
         });
 
-        function geo_json_cd9d5d0d76fd919772877f08819e2751_add (data) {
-            geo_json_cd9d5d0d76fd919772877f08819e2751
+        function geo_json_d4b6afdb97b84c6ff642478051fec070_add (data) {
+            geo_json_d4b6afdb97b84c6ff642478051fec070
                 .addData(data);
         }
-            geo_json_cd9d5d0d76fd919772877f08819e2751_add({"bbox": [3.5141947795645936, 51.04834098579707, 3.516854644863138, 51.050404952197546], "features": [{"bbox": [3.5141947795645936, 51.04834098579707, 3.516854644863138, 51.050404952197546], "geometry": {"coordinates": [[[[3.5162058989118865, 51.050404952197546], [3.516854644863138, 51.04865909056175], [3.5157609382640755, 51.04834914222788], [3.5146344323323544, 51.04834098579707], [3.5146306625578636, 51.04854771807611], [3.514344927916724, 51.04935485051336], [3.5141947795645936, 51.04960736626195], [3.5153046803351646, 51.04993912887792], [3.5153245862170674, 51.05022659670702], [3.5162058989118865, 51.050404952197546]]]], "type": "MultiPolygon"}, "id": "0", "properties": {}, "type": "Feature"}], "type": "FeatureCollection"});
+            geo_json_d4b6afdb97b84c6ff642478051fec070_add({"bbox": [3.5141947795645936, 51.04834098579707, 3.516854644863138, 51.050404952197546], "features": [{"bbox": [3.5141947795645936, 51.04834098579707, 3.516854644863138, 51.050404952197546], "geometry": {"coordinates": [[[[3.5162058989118865, 51.050404952197546], [3.516854644863138, 51.04865909056175], [3.5157609382640755, 51.04834914222788], [3.5146344323323544, 51.04834098579707], [3.5146306625578636, 51.04854771807611], [3.514344927916724, 51.04935485051336], [3.5141947795645936, 51.04960736626195], [3.5153046803351646, 51.04993912887792], [3.5153245862170674, 51.05022659670702], [3.5162058989118865, 51.050404952197546]]]], "type": "MultiPolygon"}, "id": "0", "properties": {}, "type": "Feature"}], "type": "FeatureCollection"});
 
         
     
-            geo_json_cd9d5d0d76fd919772877f08819e2751.bindTooltip(
+            geo_json_d4b6afdb97b84c6ff642478051fec070.bindTooltip(
                 `<div>
                      Omgevingsvergunning
                  </div>`,
@@ -148,55 +148,55 @@
             );
         
     
-        var popup_538d69ad928c8c36a27cd4da32ef6a2e = L.popup({
+        var popup_8166be71943a1e0d4a8253b310849555 = L.popup({
   "maxWidth": 400,
 });
 
         
             
-                var html_2d7311011ed0dc10deb88dc08c74e350 = $(`<div id="html_2d7311011ed0dc10deb88dc08c74e350" style="width: 100.0%; height: 100.0%;"><h4>Omgevingsvergunning Data</h4><table style='width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px;'><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>id</td><td style='padding: 4px;'>956833</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>projectnummer</td><td style='padding: 4px;'>2026001980</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>project_type_code</td><td style='padding: 4px;'>OMV2019_AANVRAAG</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>handeling_omschrijving</td><td style='padding: 4px;'>Het reliëf van de bodem aanmerkelijk wijzigen</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>aanvrager</td><td style='padding: 4px;'>MAES AGRO (1008842659); Natuurlijk perso(o)n(en)</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>omschrijving_projecttype</td><td style='padding: 4px;'>Aanvraag omgevingsproject</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>datum_indiening</td><td style='padding: 4px;'>2026-01-20T00:00:00</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>huidige_toestand</td><td style='padding: 4px;'>In behandeling (in eerste aanleg)</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>datum_huidige_toestand</td><td style='padding: 4px;'>2026-01-26T00:00:00</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>vvo_huidige_toestand</td><td style='padding: 4px;'>Deinze</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>fase_huidige_toestand</td><td style='padding: 4px;'>Eerste Aanleg</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>voorwerp_uuid</td><td style='padding: 4px;'>hvb0QkIBSpiM1a7ZtzzNjQ</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>project_link</td><td style='padding: 4px;'><a href='https://omgevingsloket.omgeving.vlaanderen.be?project=2026001980' target='_blank'>Klik hier</a></td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>inzageloket_link</td><td style='padding: 4px;'><a href='https://omgevingsloketinzage.omgeving.vlaanderen.be/2026001980' target='_blank'>Klik hier</a></td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>inzage_status</td><td style='padding: 4px;'>Het openbaar onderzoek loopt tot en met 08.04.2026</td></tr></table></div>`)[0];
-                popup_538d69ad928c8c36a27cd4da32ef6a2e.setContent(html_2d7311011ed0dc10deb88dc08c74e350);
+                var html_a5691a7a51ac506524a1be1abcc11342 = $(`<div id="html_a5691a7a51ac506524a1be1abcc11342" style="width: 100.0%; height: 100.0%;"><h4>Omgevingsvergunning Data</h4><table style='width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px;'><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>id</td><td style='padding: 4px;'>956833</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>projectnummer</td><td style='padding: 4px;'>2026001980</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>project_type_code</td><td style='padding: 4px;'>OMV2019_AANVRAAG</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>handeling_omschrijving</td><td style='padding: 4px;'>Het reliëf van de bodem aanmerkelijk wijzigen</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>aanvrager</td><td style='padding: 4px;'>MAES AGRO (1008842659); Natuurlijk perso(o)n(en)</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>omschrijving_projecttype</td><td style='padding: 4px;'>Aanvraag omgevingsproject</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>datum_indiening</td><td style='padding: 4px;'>2026-01-20T00:00:00</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>huidige_toestand</td><td style='padding: 4px;'>In behandeling (in eerste aanleg)</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>datum_huidige_toestand</td><td style='padding: 4px;'>2026-01-26T00:00:00</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>vvo_huidige_toestand</td><td style='padding: 4px;'>Deinze</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>fase_huidige_toestand</td><td style='padding: 4px;'>Eerste Aanleg</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>voorwerp_uuid</td><td style='padding: 4px;'>hvb0QkIBSpiM1a7ZtzzNjQ</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>project_link</td><td style='padding: 4px;'><a href='https://omgevingsloket.omgeving.vlaanderen.be?project=2026001980' target='_blank'>Klik hier</a></td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>inzageloket_link</td><td style='padding: 4px;'><a href='https://omgevingsloketinzage.omgeving.vlaanderen.be/2026001980' target='_blank'>Klik hier</a></td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>inzage_status</td><td style='padding: 4px;'>Het openbaar onderzoek loopt tot en met 08.04.2026</td></tr></table></div>`)[0];
+                popup_8166be71943a1e0d4a8253b310849555.setContent(html_a5691a7a51ac506524a1be1abcc11342);
             
         
 
-        geo_json_cd9d5d0d76fd919772877f08819e2751.bindPopup(popup_538d69ad928c8c36a27cd4da32ef6a2e)
+        geo_json_d4b6afdb97b84c6ff642478051fec070.bindPopup(popup_8166be71943a1e0d4a8253b310849555)
         ;
 
         
     
     
-            geo_json_cd9d5d0d76fd919772877f08819e2751.addTo(map_a80a426c0abfa55b2b6b5e9354f4c860);
+            geo_json_d4b6afdb97b84c6ff642478051fec070.addTo(map_92bd3d7ae3f32c4525c8b0567c91e64e);
         
     
-        function geo_json_e5e3ebc24484b394219c6705c5c55342_styler(feature) {
+        function geo_json_ffaf99ba46b044d0a40def21ad4ef022_styler(feature) {
             switch(feature.id) {
                 default:
                     return {"color": "blue", "weight": 5};
             }
         }
 
-        function geo_json_e5e3ebc24484b394219c6705c5c55342_onEachFeature(feature, layer) {
+        function geo_json_ffaf99ba46b044d0a40def21ad4ef022_onEachFeature(feature, layer) {
 
             layer.on({
             });
         };
-        var geo_json_e5e3ebc24484b394219c6705c5c55342 = L.geoJson(null, {
-                onEachFeature: geo_json_e5e3ebc24484b394219c6705c5c55342_onEachFeature,
+        var geo_json_ffaf99ba46b044d0a40def21ad4ef022 = L.geoJson(null, {
+                onEachFeature: geo_json_ffaf99ba46b044d0a40def21ad4ef022_onEachFeature,
             
-                style: geo_json_e5e3ebc24484b394219c6705c5c55342_styler,
+                style: geo_json_ffaf99ba46b044d0a40def21ad4ef022_styler,
             ...{
 }
         });
 
-        function geo_json_e5e3ebc24484b394219c6705c5c55342_add (data) {
-            geo_json_e5e3ebc24484b394219c6705c5c55342
+        function geo_json_ffaf99ba46b044d0a40def21ad4ef022_add (data) {
+            geo_json_ffaf99ba46b044d0a40def21ad4ef022
                 .addData(data);
         }
-            geo_json_e5e3ebc24484b394219c6705c5c55342_add({"bbox": [3.5142410519996283, 51.048776390671165, 3.5200575278688464, 51.04981445197545], "features": [{"bbox": [3.5142410519996283, 51.048776390671165, 3.5200575278688464, 51.04981445197545], "geometry": {"coordinates": [[3.5200575278688464, 51.04913845619256], [3.518861720744257, 51.048776390671165], [3.518516039067577, 51.04918413302535], [3.5182744821142635, 51.04912213014525], [3.5179618604779637, 51.04953126812815], [3.5166162153879434, 51.049321067107186], [3.5164160327608727, 51.04981445197545], [3.5151939523007396, 51.04958310994704], [3.514866359093431, 51.04960159695358], [3.5147415690584753, 51.0495891046018], [3.5146135860205527, 51.0495499349851], [3.5142410519996283, 51.04951246913293]], "type": "LineString"}, "id": "0", "properties": {}, "type": "Feature"}], "type": "FeatureCollection"});
+            geo_json_ffaf99ba46b044d0a40def21ad4ef022_add({"bbox": [3.5142410519996283, 51.048776390671165, 3.5200575278688464, 51.04981445197545], "features": [{"bbox": [3.5142410519996283, 51.048776390671165, 3.5200575278688464, 51.04981445197545], "geometry": {"coordinates": [[3.5200575278688464, 51.04913845619256], [3.518861720744257, 51.048776390671165], [3.518516039067577, 51.04918413302535], [3.5182744821142635, 51.04912213014525], [3.5179618604779637, 51.04953126812815], [3.5166162153879434, 51.049321067107186], [3.5164160327608727, 51.04981445197545], [3.5151939523007396, 51.04958310994704], [3.514866359093431, 51.04960159695358], [3.5147415690584753, 51.0495891046018], [3.5146135860205527, 51.0495499349851], [3.5142410519996283, 51.04951246913293]], "type": "LineString"}, "id": "0", "properties": {}, "type": "Feature"}], "type": "FeatureCollection"});
 
         
     
-            geo_json_e5e3ebc24484b394219c6705c5c55342.bindTooltip(
+            geo_json_ffaf99ba46b044d0a40def21ad4ef022.bindTooltip(
                 `<div>
                      Buurtweg 1: 166-D-005 nr 39
                  </div>`,
@@ -206,46 +206,46 @@
             );
         
     
-        var popup_908f3b70962ed1e17d8ea3eeadb188e1 = L.popup({
+        var popup_1643cf3bb9f369aae99ed9c202a0877a = L.popup({
   "maxWidth": 400,
 });
 
         
             
-                var html_8e06948f43529ee7d49ce0ce5ebdea73 = $(`<div id="html_8e06948f43529ee7d49ce0ce5ebdea73" style="width: 100.0%; height: 100.0%;"><h4>Buurtweg 1 (Match)</h4><table style='width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px;'><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>ID</td><td style='padding: 4px;'>19431.0</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>NR</td><td style='padding: 4px;'>39</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>TYPE</td><td style='padding: 4px;'>s</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>LENGTH</td><td style='padding: 4px;'>524.963</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>GEMID</td><td style='padding: 4px;'>166</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>PLANID</td><td style='padding: 4px;'><a href='https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/166-D-005.sid' target='_blank'>Klik hier</a></td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>CEVI_OID</td><td style='padding: 4px;'>19406</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>GEMEENTE</td><td style='padding: 4px;'>Nevele</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>DETAILPLAN</td><td style='padding: 4px;'>166-D-005</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>TYPE_LABEL</td><td style='padding: 4px;'>sentier</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>bron_bestand</td><td style='padding: 4px;'>buurtwegen</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>IDWIJZIGIN</td><td style='padding: 4px;'>None</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>DATUM</td><td style='padding: 4px;'>NaT</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>LINK</td><td style='padding: 4px;'>None</td></tr></table></div>`)[0];
-                popup_908f3b70962ed1e17d8ea3eeadb188e1.setContent(html_8e06948f43529ee7d49ce0ce5ebdea73);
+                var html_10e5f68b73a662b527a12f5ab18e2d44 = $(`<div id="html_10e5f68b73a662b527a12f5ab18e2d44" style="width: 100.0%; height: 100.0%;"><h4>Buurtweg 1 (Match)</h4><table style='width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px;'><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>ID</td><td style='padding: 4px;'>19431.0</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>NR</td><td style='padding: 4px;'>39</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>TYPE</td><td style='padding: 4px;'>s</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>LENGTH</td><td style='padding: 4px;'>524.963</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>GEMID</td><td style='padding: 4px;'>166</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>PLANID</td><td style='padding: 4px;'><a href='https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/166-D-005.sid' target='_blank'>Klik hier</a></td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>CEVI_OID</td><td style='padding: 4px;'>19406</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>GEMEENTE</td><td style='padding: 4px;'>Nevele</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>DETAILPLAN</td><td style='padding: 4px;'>166-D-005</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>TYPE_LABEL</td><td style='padding: 4px;'>sentier</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>bron_bestand</td><td style='padding: 4px;'>buurtwegen</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>IDWIJZIGIN</td><td style='padding: 4px;'>None</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>DATUM</td><td style='padding: 4px;'>NaT</td></tr><tr style='border-bottom: 1px solid #ddd;'><td style='padding: 4px; font-weight: bold;'>LINK</td><td style='padding: 4px;'>None</td></tr></table></div>`)[0];
+                popup_1643cf3bb9f369aae99ed9c202a0877a.setContent(html_10e5f68b73a662b527a12f5ab18e2d44);
             
         
 
-        geo_json_e5e3ebc24484b394219c6705c5c55342.bindPopup(popup_908f3b70962ed1e17d8ea3eeadb188e1)
+        geo_json_ffaf99ba46b044d0a40def21ad4ef022.bindPopup(popup_1643cf3bb9f369aae99ed9c202a0877a)
         ;
 
         
     
     
-            geo_json_e5e3ebc24484b394219c6705c5c55342.addTo(map_a80a426c0abfa55b2b6b5e9354f4c860);
+            geo_json_ffaf99ba46b044d0a40def21ad4ef022.addTo(map_92bd3d7ae3f32c4525c8b0567c91e64e);
         
     
-            var layer_control_b18bb87bcef59c77a54003c520f0c0ac_layers = {
+            var layer_control_c90356b5afb746891e0fc22f5d914169_layers = {
                 base_layers : {
-                    "openstreetmap" : tile_layer_8f793c70b4618600db791bff671cd19d,
+                    "openstreetmap" : tile_layer_6b97a81d03cabd6912e300ed78854bcc,
                 },
                 overlays :  {
-                    "Atlas der Buurtwegen (1841)" : macro_element_6ac548f20c8a6b7a3cb10b5e52ce1963,
-                    "Luchtfoto (Vlaanderen)" : macro_element_dabbeeef9a558cc82ade989fc326eb9a,
-                    "Omgevingsvergunning" : geo_json_cd9d5d0d76fd919772877f08819e2751,
-                    "Buurtweg 1: 166-D-005 nr 39" : geo_json_e5e3ebc24484b394219c6705c5c55342,
+                    "Atlas der Buurtwegen (1841)" : macro_element_9161e9423bcfdeb518589b01a9e9fbf1,
+                    "Luchtfoto (Vlaanderen)" : macro_element_6eed106601e3c3a5a957adde74255c1d,
+                    "Omgevingsvergunning" : geo_json_d4b6afdb97b84c6ff642478051fec070,
+                    "Buurtweg 1: 166-D-005 nr 39" : geo_json_ffaf99ba46b044d0a40def21ad4ef022,
                 },
             };
-            let layer_control_b18bb87bcef59c77a54003c520f0c0ac = L.control.layers(
-                layer_control_b18bb87bcef59c77a54003c520f0c0ac_layers.base_layers,
-                layer_control_b18bb87bcef59c77a54003c520f0c0ac_layers.overlays,
+            let layer_control_c90356b5afb746891e0fc22f5d914169 = L.control.layers(
+                layer_control_c90356b5afb746891e0fc22f5d914169_layers.base_layers,
+                layer_control_c90356b5afb746891e0fc22f5d914169_layers.overlays,
                 {
   "position": "topright",
   "collapsed": true,
   "autoZIndex": true,
 }
-            ).addTo(map_a80a426c0abfa55b2b6b5e9354f4c860);
+            ).addTo(map_92bd3d7ae3f32c4525c8b0567c91e64e);
 
         
 </script>
