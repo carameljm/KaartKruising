@@ -16,8 +16,7 @@
     <header class="hero">
         <div class="hero-content">
             <h1>Kaart Kruisingen</h1>
-            <p>Intelligence platform for monitoring environmental permits intersecting with community paths in Flanders.
-            </p>
+            <p>Intelligence platform for monitoring environmental permits intersecting with community paths in Flanders.</p>
         </div>
     </header>
 
@@ -50,13 +49,10 @@
     </main>
 
     <script>
-        // Load Lucide icons
         lucide.createIcons();
 
         async function loadDashboard() {
             try {
-                // In a real environment, this would be output_maps/matches.json
-                // But for the sake of the demo, we should handle cases where data isn't there yet
                 const response = await fetch('output_maps/matches.json');
                 const matches = await response.json();
 
@@ -64,7 +60,6 @@
                 renderFilters(matches);
                 renderMatches(matches);
 
-                // Add search logic
                 document.getElementById('search').addEventListener('input', (e) => filterData(matches));
                 document.getElementById('municipality-filter').addEventListener('change', (e) => filterData(matches));
 
@@ -84,13 +79,24 @@
             const municipalities = new Set(matches.map(m => m.municipality));
             document.getElementById('mun-count').innerText = municipalities.size;
 
-            // Simple mock for "This Week" (all of them for now)
-            document.getElementById('recent-matches').innerText = matches.length;
+            // Real "This Week" count based on validated_at timestamp
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            const recentCount = matches.filter(m => {
+                const validatedAt = m.validated_at;
+                return validatedAt && new Date(validatedAt) >= oneWeekAgo;
+            }).length;
+            document.getElementById('recent-matches').innerText = recentCount;
         }
 
         function renderFilters(matches) {
             const munFilter = document.getElementById('municipality-filter');
             const municipalities = [...new Set(matches.map(m => m.municipality))].sort();
+
+            // Clear existing options (keep first)
+            while (munFilter.options.length > 1) {
+                munFilter.remove(1);
+            }
 
             municipalities.forEach(mun => {
                 const opt = document.createElement('option');
@@ -103,6 +109,14 @@
         function renderMatches(matches) {
             const grid = document.getElementById('matches-grid');
             grid.innerHTML = '';
+
+            if (matches.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-dim);">
+                        <p>Geen resultaten gevonden.</p>
+                    </div>`;
+                return;
+            }
 
             matches.forEach(match => {
                 const pData = match.permit_data;
