@@ -27,8 +27,8 @@
                 <div class="stat-label">Total Matches</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" id="recent-matches">-</div>
-                <div class="stat-label">This Week</div>
+                <div class="stat-value" id="active-matches">-</div>
+                <div class="stat-label">Actief</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="mun-count">-</div>
@@ -41,6 +41,18 @@
             <select id="municipality-filter" class="filter-box">
                 <option value="">All Municipalities</option>
             </select>
+            <select id="status-filter" class="filter-box">
+                <option value="all">Alles</option>
+                <option value="active">Actief (openbaar onderzoek)</option>
+                <option value="expired">Afgelopen</option>
+            </select>
+            <select id="sort-order" class="filter-box">
+                <option value="deadline-asc">Eerst aflopend</option>
+                <option value="deadline-desc">Laatst aflopend</option>
+                <option value="date-desc">Nieuwste eerst</option>
+                <option value="date-asc">Oudste eerst</option>
+                <option value="municipality">Gemeente A-Z</option>
+            </select>
         </section>
 
         <div class="matches-grid" id="matches-grid">
@@ -51,17 +63,103 @@
     <script>
         lucide.createIcons();
 
+        // --- Date parsing helpers ---
+        function parseDeadline(inzageStatus) {
+            if (!inzageStatus) return null;
+            // Match "Het openbaar onderzoek loopt tot en met DD.MM.YYYY"
+            // or "De beroepsperiode loopt tot en met DD.MM.YYYY"
+            const match = inzageStatus.match(/(\d{2})\.(\d{2})\.(\d{4})/);
+            if (match) {
+                const [, dd, mm, yyyy] = match;
+                return new Date(yyyy, mm - 1, dd);
+            }
+            return null;
+        }
+
+        function isExpired(inzageStatus) {
+            const deadline = parseDeadline(inzageStatus);
+            if (!deadline) return false;
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return deadline < today;
+        }
+
+        function daysUntilDeadline(inzageStatus) {
+            const deadline = parseDeadline(inzageStatus);
+            if (!deadline) return null;
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
+        }
+
+        function formatDeadline(inzageStatus) {
+            const deadline = parseDeadline(inzageStatus);
+            if (!deadline) return inzageStatus;
+            const days = daysUntilDeadline(inzageStatus);
+            if (days === null) return inzageStatus;
+            if (days < 0) return `<span style="color: #94a3b8">${inzageStatus}</span>`;
+            if (days === 0) return `<span style="color: #f43f5e; font-weight: bold;">Vandaag laatste dag!</span>`;
+            if (days <= 3) return `<span style="color: #f43f5e; font-weight: bold;">${inzageStatus} (nog ${days} dag${days > 1 ? 'en' : ''})</span>`;
+            if (days <= 7) return `<span style="color: #f59e0b">${inzageStatus} (nog ${days} dagen)</span>`;
+            return `<span style="color: #22c55e">${inzageStatus}</span>`;
+        }
+
+        // --- Sorting ---
+        function sortMatches(matches, sortOrder) {
+            const sorted = [...matches];
+            switch (sortOrder) {
+                case 'deadline-asc':
+                    // Active first (soonest deadline), then expired
+                    return sorted.sort((a, b) => {
+                        const expiredA = isExpired(a.permit_data.inzage_status);
+                        const expiredB = isExpired(b.permit_data.inzage_status);
+                        if (expiredA !== expiredB) return expiredA ? 1 : -1;
+                        const dlA = parseDeadline(a.permit_data.inzage_status);
+                        const dlB = parseDeadline(b.permit_data.inzage_status);
+                        if (dlA && dlB) return dlA - dlB;
+                        if (dlA) return -1;
+                        if (dlB) return 1;
+                        return 0;
+                    });
+                case 'deadline-desc':
+                    return sorted.sort((a, b) => {
+                        const expiredA = isExpired(a.permit_data.inzage_status);
+                        const expiredB = isExpired(b.permit_data.inzage_status);
+                        if (expiredA !== expiredB) return expiredA ? 1 : -1;
+                        const dlA = parseDeadline(a.permit_data.inzage_status);
+                        const dlB = parseDeadline(b.permit_data.inzage_status);
+                        if (dlA && dlB) return dlB - dlA;
+                        if (dlA) return -1;
+                        if (dlB) return 1;
+                        return 0;
+                    });
+                case 'date-desc':
+                    return sorted.sort((a, b) => new Date(b.validated_at || 0) - new Date(a.validated_at || 0));
+                case 'date-asc':
+                    return sorted.sort((a, b) => new Date(a.validated_at || 0) - new Date(b.validated_at || 0));
+                case 'municipality':
+                    return sorted.sort((a, b) => a.municipality.localeCompare(b.municipality));
+                default:
+                    return sorted;
+            }
+        }
+
+        // --- Main ---
+        let allMatches = [];
+
         async function loadDashboard() {
             try {
                 const response = await fetch('output_maps/matches.json');
-                const matches = await response.json();
+                allMatches = await response.json();
 
-                renderStats(matches);
-                renderFilters(matches);
-                renderMatches(matches);
+                renderStats(allMatches);
+                renderFilters(allMatches);
+                applyFiltersAndSort();
 
-                document.getElementById('search').addEventListener('input', (e) => filterData(matches));
-                document.getElementById('municipality-filter').addEventListener('change', (e) => filterData(matches));
+                document.getElementById('search').addEventListener('input', applyFiltersAndSort);
+                document.getElementById('municipality-filter').addEventListener('change', applyFiltersAndSort);
+                document.getElementById('status-filter').addEventListener('change', applyFiltersAndSort);
+                document.getElementById('sort-order').addEventListener('change', applyFiltersAndSort);
 
             } catch (error) {
                 console.error('Error loading matches:', error);
@@ -79,21 +177,14 @@
             const municipalities = new Set(matches.map(m => m.municipality));
             document.getElementById('mun-count').innerText = municipalities.size;
 
-            // Real "This Week" count based on validated_at timestamp
-            const oneWeekAgo = new Date();
-            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-            const recentCount = matches.filter(m => {
-                const validatedAt = m.validated_at;
-                return validatedAt && new Date(validatedAt) >= oneWeekAgo;
-            }).length;
-            document.getElementById('recent-matches').innerText = recentCount;
+            const activeCount = matches.filter(m => !isExpired(m.permit_data.inzage_status)).length;
+            document.getElementById('active-matches').innerText = activeCount;
         }
 
         function renderFilters(matches) {
             const munFilter = document.getElementById('municipality-filter');
             const municipalities = [...new Set(matches.map(m => m.municipality))].sort();
 
-            // Clear existing options (keep first)
             while (munFilter.options.length > 1) {
                 munFilter.remove(1);
             }
@@ -104,6 +195,31 @@
                 opt.textContent = mun;
                 munFilter.appendChild(opt);
             });
+        }
+
+        function applyFiltersAndSort() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const munFilter = document.getElementById('municipality-filter').value;
+            const statusFilter = document.getElementById('status-filter').value;
+            const sortOrder = document.getElementById('sort-order').value;
+
+            let filtered = allMatches.filter(m => {
+                const matchesSearch = (m.permit_data.projectnummer || '').toLowerCase().includes(searchTerm) ||
+                    (m.permit_data.referentie_project || '').toLowerCase().includes(searchTerm);
+                const matchesMun = munFilter === "" || m.municipality === munFilter;
+
+                let matchesStatus = true;
+                if (statusFilter === 'active') {
+                    matchesStatus = !isExpired(m.permit_data.inzage_status);
+                } else if (statusFilter === 'expired') {
+                    matchesStatus = isExpired(m.permit_data.inzage_status);
+                }
+
+                return matchesSearch && matchesMun && matchesStatus;
+            });
+
+            filtered = sortMatches(filtered, sortOrder);
+            renderMatches(filtered);
         }
 
         function renderMatches(matches) {
@@ -118,11 +234,32 @@
                 return;
             }
 
+            let lastExpired = false;
+
             matches.forEach(match => {
                 const pData = match.permit_data;
                 const rData = match.road_data;
+                const expired = isExpired(pData.inzage_status);
+
+                // Add separator between active and expired
+                if (expired && !lastExpired) {
+                    const sep = document.createElement('div');
+                    sep.style.cssText = 'grid-column: 1/-1; margin-top: 30px; margin-bottom: 10px; padding: 10px 20px; border-top: 2px solid rgba(255,255,255,0.1);';
+                    sep.innerHTML = `<span style="color: var(--text-dim); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;">Archief — Openbaar onderzoek afgelopen</span>`;
+                    grid.appendChild(sep);
+                }
+                lastExpired = expired;
+
                 const card = document.createElement('div');
                 card.className = 'match-card';
+                if (expired) {
+                    card.style.opacity = '0.6';
+                    card.style.filter = 'grayscale(0.3)';
+                }
+
+                const deadlineHtml = formatDeadline(pData.inzage_status);
+                const roadCount = match.road_count || 1;
+
                 card.innerHTML = `
                     <a href="output_maps/${match.map_file}" target="_blank" class="card-map-link">
                         <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.3"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
@@ -132,11 +269,11 @@
                         <h3 class="card-title">${pData.projectnummer || pData.referentie_project || 'Onbekend Project'}</h3>
                         <p class="card-details">${pData.handeling_omschrijving || 'Geen omschrijving beschikbaar'}</p>
                         <div style="margin-top: 15px; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;">
-                            <strong>Weg:</strong> ${rData.road_name || rData.NR || 'Onbekende buurtweg'} (${rData.bron_bestand || 'Atlas'})
+                            <strong>Weg:</strong> ${rData.road_name || rData.NR || 'Onbekende buurtweg'} (${rData.bron_bestand || 'Atlas'})${roadCount > 1 ? ` <span style="color: var(--primary)">+${roadCount - 1} meer</span>` : ''}
                         </div>
                     </div>
                     <div class="card-footer">
-                        <span style="font-size: 0.75rem; color: var(--text-dim)">Datum: ${pData.datum_indiening || 'Onbekend'} • <strong>${pData.inzage_status || 'Gevalideerd'}</strong></span>
+                        <span style="font-size: 0.75rem; color: var(--text-dim)">${deadlineHtml}</span>
                         <a href="${pData.inzageloket_link || pData.project_link || '#'}" target="_blank" class="btn-icon" title="View in Inzageloket">
                             <i data-lucide="external-link" style="width: 18px"></i>
                         </a>
@@ -145,20 +282,6 @@
                 grid.appendChild(card);
             });
             lucide.createIcons();
-        }
-
-        function filterData(matches) {
-            const searchTerm = document.getElementById('search').value.toLowerCase();
-            const munFilter = document.getElementById('municipality-filter').value;
-
-            const filtered = matches.filter(m => {
-                const matchesSearch = (m.permit_data.projectnummer || '').toLowerCase().includes(searchTerm) ||
-                    (m.permit_data.referentie_project || '').toLowerCase().includes(searchTerm);
-                const matchesMun = munFilter === "" || m.municipality === munFilter;
-                return matchesSearch && matchesMun;
-            });
-
-            renderMatches(filtered);
         }
 
         loadDashboard();
