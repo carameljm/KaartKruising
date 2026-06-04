@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+.env
+.DS_Store
+Thumbs.db
+output_maps/*.html
+!output_maps/matches.json
