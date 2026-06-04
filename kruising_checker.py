@@ -274,6 +274,26 @@ def generate_map(permit_geom, road_geoms, permit_data, road_data_list, output_pa
     m.save(output_path)
 
 
+def _group_pending_by_project(pending_queue):
+    """Group pending entries by projectnummer, collecting all roads per project."""
+    grouped = {}
+    for item in pending_queue:
+        pn = item["permit_data"].get("projectnummer")
+        if pn not in grouped:
+            grouped[pn] = {
+                "municipality": item["municipality"],
+                "permit_data": item["permit_data"],
+                "permit_geom_wkt": item["permit_geom_wkt"],
+                "roads": [],
+                "discovered_at": item["discovered_at"],
+            }
+        grouped[pn]["roads"].append({
+            "road_data": item["road_data"],
+            "road_geom_wkt": item["road_geom_wkt"],
+        })
+    return list(grouped.values())
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--roads-dir", default="buurtwegenomgevingsdossiers-main")
@@ -336,36 +356,60 @@ def main():
         log.info("No pending items to validate.")
         return
 
-    log.info("Validating %d pending against Inzageloket...", len(pending_queue))
-    still_pending, newly_validated = [], 0
+    # Group pending by project for validation (1 validation call per project)
+    grouped_pending = _group_pending_by_project(pending_queue)
+    log.info("Validating %d unique projects (%d total roads) against Inzageloket...",
+             len(grouped_pending), len(pending_queue))
 
-    for item in pending_queue:
-        project_num = item["permit_data"].get("projectnummer")
+    still_pending, newly_validated = [], 0
+    validated_projectnums = set()
+
+    for group in grouped_pending:
+        project_num = group["permit_data"].get("projectnummer")
+
+        # Skip if already validated in this run
+        if project_num in validated_projectnums:
+            continue
+
         inzage_data = check_inzageloket(project_num)
 
         if inzage_data:
-            log.info("VALIDATED: %s", project_num)
-            item["permit_data"]["inzageloket_link"] = f"https://omgevingsloketinzage.omgeving.vlaanderen.be/{project_num}"
-            item["permit_data"]["inzage_status"] = inzage_data.get("toestand", "Onbekend")
+            log.info("VALIDATED: %s (%d roads)", project_num, len(group["roads"]))
+            group["permit_data"]["inzageloket_link"] = f"https://omgevingsloketinzage.omgeving.vlaanderen.be/{project_num}"
+            group["permit_data"]["inzage_status"] = inzage_data.get("toestand", "Onbekend")
 
-            pg = wkt.loads(item["permit_geom_wkt"])
-            rg = wkt.loads(item["road_geom_wkt"])
-            file_id = str(item["permit_data"].get("referentie_project") or project_num).replace("/", "-").replace(":", "")
+            pg = wkt.loads(group["permit_geom_wkt"])
+            road_geoms = [wkt.loads(r["road_geom_wkt"]) for r in group["roads"]]
+            road_data_list = [r["road_data"] for r in group["roads"]]
+
+            file_id = str(group["permit_data"].get("referentie_project") or project_num).replace("/", "-").replace(":", "")
             filename = f"match_{file_id}.html"
 
-            generate_map(pg, rg, item["permit_data"], item["road_data"], os.path.join(args.output, filename))
+            generate_map(pg, road_geoms, group["permit_data"], road_data_list,
+                         os.path.join(args.output, filename))
 
             validated_matches.append({
                 "match_id": len(validated_matches),
-                "municipality": item["municipality"],
-                "permit_data": item["permit_data"],
-                "road_data": item["road_data"],
+                "municipality": group["municipality"],
+                "permit_data": group["permit_data"],
+                "road_data": group["roads"][0]["road_data"],
+                "road_count": len(group["roads"]),
                 "map_file": filename,
                 "validated_at": datetime.now().isoformat()
             })
+            validated_projectnums.add(project_num)
             newly_validated += 1
         else:
-            still_pending.append(item)
+            # Keep all roads for this project as still pending
+            for road in group["roads"]:
+                still_pending.append({
+                    "municipality": group["municipality"],
+                    "permit_data": group["permit_data"],
+                    "road_data": road["road_data"],
+                    "permit_geom_wkt": group["permit_geom_wkt"],
+                    "road_geom_wkt": road["road_geom_wkt"],
+                    "discovered_at": group["discovered_at"],
+                })
 
         time.sleep(REQUEST_DELAY)
 
