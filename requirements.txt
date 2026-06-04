@@ -1,6 +1,6 @@
-geopandas
-pandas
-requests
-shapely
-folium
-pyogrio
+geopandas>=0.14.0
+pandas>=2.0.0
+requests>=2.31.0
+shapely>=2.0.0
+folium>=0.15.0
+pyogrio>=0.7.0
