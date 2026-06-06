@@ -404,6 +404,10 @@
                 const card = document.createElement('div');
                 card.className = 'match-card';
                 card.dataset.idx = i;
+                card.onclick = function(e) {
+                    if (e.target.closest('.btn-icon')) return;
+                    openMapModal(i);
+                };
                 if (expired) {
                     card.style.opacity = '0.6';
                     card.style.filter = 'grayscale(0.3)';
@@ -439,17 +443,6 @@
             });
             lucide.createIcons();
         }
-
-        // Event delegation on document — catches all card clicks
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.btn-icon')) return;
-            const card = e.target.closest('.match-card');
-            if (!card || card.dataset.idx === undefined) return;
-            const idx = parseInt(card.dataset.idx);
-            if (lastRenderedMatches[idx]) {
-                openMapModal(lastRenderedMatches[idx]);
-            }
-        });
 
         loadDashboard();
     </script>
