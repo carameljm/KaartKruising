@@ -182,6 +182,7 @@ body {
     font-size: 1.2rem;
     color: white;
     z-index: 2;
+    pointer-events: none;
 }
 
 .card-map-link:hover::before {
