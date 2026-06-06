@@ -9,7 +9,61 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        .map-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .map-modal.active { display: flex; }
+        .map-modal-content {
+            width: 90vw;
+            height: 80vh;
+            max-width: 1200px;
+            background: var(--bg-dark);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--glass-border);
+        }
+        .map-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 10;
+            background: var(--bg-dark);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            color: var(--text-main);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .map-modal-close:hover { border-color: var(--primary); }
+        .map-modal-title {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            max-width: 60%;
+        }
+        .map-modal-title h4 { margin: 0; font-size: 0.9rem; }
+        .map-modal-title p { margin: 2px 0 0; font-size: 0.75rem; color: var(--text-dim); }
+        #inline-map { width: 100%; height: 100%; }
+    </style>
 </head>
 
 <body>
@@ -55,10 +109,17 @@
             </select>
         </section>
 
-        <div class="matches-grid" id="matches-grid">
-            <!-- Matches will be injected here -->
-        </div>
+        <div class="matches-grid" id="matches-grid"></div>
     </main>
+
+    <!-- Map Modal -->
+    <div class="map-modal" id="map-modal">
+        <div class="map-modal-content">
+            <div class="map-modal-title" id="map-modal-title"></div>
+            <button class="map-modal-close" onclick="closeMapModal()">Sluiten</button>
+            <div id="inline-map"></div>
+        </div>
+    </div>
 
     <script>
         lucide.createIcons();
@@ -66,8 +127,6 @@
         // --- Date parsing helpers ---
         function parseDeadline(inzageStatus) {
             if (!inzageStatus) return null;
-            // Match "Het openbaar onderzoek loopt tot en met DD.MM.YYYY"
-            // or "De beroepsperiode loopt tot en met DD.MM.YYYY"
             const match = inzageStatus.match(/(\d{2})\.(\d{2})\.(\d{4})/);
             if (match) {
                 const [, dd, mm, yyyy] = match;
@@ -78,7 +137,6 @@
 
         function isExpired(inzageStatus) {
             const deadline = parseDeadline(inzageStatus);
-            // No deadline = unknown = treat as expired (archive) until a date is set
             if (!deadline) return true;
             const today = new Date();
             today.setHours(0, 0, 0, 0);
@@ -112,7 +170,6 @@
             const sorted = [...matches];
             switch (sortOrder) {
                 case 'deadline-asc':
-                    // Active first (soonest deadline), then expired
                     return sorted.sort((a, b) => {
                         const expiredA = isExpired(a.permit_data.inzage_status);
                         const expiredB = isExpired(b.permit_data.inzage_status);
@@ -147,6 +204,115 @@
             }
         }
 
+        // --- Map Modal ---
+        let mapInstance = null;
+        const ROAD_COLORS = ['#3b82f6', '#8b5cf6', '#22c55e', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899'];
+
+        function openMapModal(match) {
+            const modal = document.getElementById('map-modal');
+            modal.classList.add('active');
+
+            const pData = match.permit_data;
+            document.getElementById('map-modal-title').innerHTML = `
+                <h4>${pData.projectnummer || pData.referentie_project || 'Onbekend Project'}</h4>
+                <p>${match.municipality} • ${pData.handeling_omschrijving || ''}</p>
+            `;
+
+            // Destroy previous map
+            if (mapInstance) {
+                mapInstance.remove();
+                mapInstance = null;
+            }
+
+            // Calculate center from permit geometry
+            const permitGeom = match.permit_geom;
+            let center = [50.9, 3.7]; // default Flanders
+            if (permitGeom && permitGeom.coordinates) {
+                const coords = permitGeom.coordinates;
+                if (permitGeom.type === 'Polygon') {
+                    const ring = coords[0];
+                    const lats = ring.map(c => c[1]);
+                    const lngs = ring.map(c => c[0]);
+                    center = [
+                        (Math.min(...lats) + Math.max(...lats)) / 2,
+                        (Math.min(...lngs) + Math.max(...lngs)) / 2
+                    ];
+                } else if (permitGeom.type === 'MultiPolygon') {
+                    const ring = coords[0][0];
+                    const lats = ring.map(c => c[1]);
+                    const lngs = ring.map(c => c[0]);
+                    center = [
+                        (Math.min(...lats) + Math.max(...lats)) / 2,
+                        (Math.min(...lngs) + Math.max(...lngs)) / 2
+                    ];
+                }
+            }
+
+            mapInstance = L.map('inline-map').setView(center, 17);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap'
+            }).addTo(mapInstance);
+
+            // Atlas der Buurtwegen WMS
+            L.tileLayer.wms(
+                'https://geoservices.informatievlaanderen.be/overdrachtdienst/AtlasBuurtwegen/wms',
+                { layers: 'AtlasBuurtwegen', format: 'image/png', transparent: true, opacity: 0.6 }
+            ).addTo(mapInstance);
+
+            // Aerial photo WMS
+            L.tileLayer.wms(
+                'https://geo.api.vlaanderen.be/Luchtfoto/wms',
+                { layers: 'Luchtfoto', format: 'image/png', transparent: true, opacity: 0.8 }
+            ).addTo(mapInstance);
+
+            // Permit polygon
+            if (permitGeom) {
+                const permitLayer = L.geoJSON(permitGeom, {
+                    style: { color: '#ff7800', fillColor: '#ff7800', fillOpacity: 0.3, weight: 2 }
+                }).addTo(mapInstance);
+                permitLayer.bindPopup(`<strong>Omgevingsvergunning</strong><br>${pData.handeling_omschrijving || ''}`);
+            }
+
+            // Road geometries
+            if (match.road_geoms && match.road_geoms.length > 0) {
+                match.road_geoms.forEach((roadGeom, idx) => {
+                    const color = ROAD_COLORS[idx % ROAD_COLORS.length];
+                    const roadData = match.road_data; // first road's data as fallback
+                    const roadName = roadData.road_name || roadData.NR || `Weg ${idx + 1}`;
+                    L.geoJSON(roadGeom, {
+                        style: { color: color, weight: 4 }
+                    }).addTo(mapInstance).bindPopup(`<strong>Buurtweg ${idx + 1}</strong><br>${roadName} (${roadData.bron_bestand || 'Atlas'})`);
+                });
+            }
+
+            // Fit bounds
+            const allLayers = L.featureGroup();
+            if (permitGeom) allLayers.addLayer(L.geoJSON(permitGeom));
+            if (match.road_geoms) {
+                match.road_geoms.forEach(rg => allLayers.addLayer(L.geoJSON(rg)));
+            }
+            if (allLayers.getLayers().length > 0) {
+                mapInstance.fitBounds(allLayers.getBounds().pad(0.1));
+            }
+        }
+
+        function closeMapModal() {
+            document.getElementById('map-modal').classList.remove('active');
+            if (mapInstance) {
+                mapInstance.remove();
+                mapInstance = null;
+            }
+        }
+
+        // Close on backdrop click
+        document.getElementById('map-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeMapModal();
+        });
+        // Close on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeMapModal();
+        });
+
         // --- Main ---
         let allMatches = [];
 
@@ -176,10 +342,8 @@
 
         function renderStats(matches) {
             document.getElementById('total-matches').innerText = matches.length;
-
             const municipalities = new Set(matches.map(m => m.municipality));
             document.getElementById('mun-count').innerText = municipalities.size;
-
             const activeCount = matches.filter(m => !isExpired(m.permit_data.inzage_status)).length;
             document.getElementById('active-matches').innerText = activeCount;
         }
@@ -187,11 +351,7 @@
         function renderFilters(matches) {
             const munFilter = document.getElementById('municipality-filter');
             const municipalities = [...new Set(matches.map(m => m.municipality))].sort();
-
-            while (munFilter.options.length > 1) {
-                munFilter.remove(1);
-            }
-
+            while (munFilter.options.length > 1) munFilter.remove(1);
             municipalities.forEach(mun => {
                 const opt = document.createElement('option');
                 opt.value = mun;
@@ -210,14 +370,9 @@
                 const matchesSearch = (m.permit_data.projectnummer || '').toLowerCase().includes(searchTerm) ||
                     (m.permit_data.referentie_project || '').toLowerCase().includes(searchTerm);
                 const matchesMun = munFilter === "" || m.municipality === munFilter;
-
                 let matchesStatus = true;
-                if (statusFilter === 'active') {
-                    matchesStatus = !isExpired(m.permit_data.inzage_status);
-                } else if (statusFilter === 'expired') {
-                    matchesStatus = isExpired(m.permit_data.inzage_status);
-                }
-
+                if (statusFilter === 'active') matchesStatus = !isExpired(m.permit_data.inzage_status);
+                else if (statusFilter === 'expired') matchesStatus = isExpired(m.permit_data.inzage_status);
                 return matchesSearch && matchesMun && matchesStatus;
             });
 
@@ -244,7 +399,6 @@
                 const rData = match.road_data;
                 const expired = isExpired(pData.inzage_status);
 
-                // Add separator between active and expired
                 if (expired && !lastExpired) {
                     const sep = document.createElement('div');
                     sep.style.cssText = 'grid-column: 1/-1; margin-top: 30px; margin-bottom: 10px; padding: 10px 20px; border-top: 2px solid rgba(255,255,255,0.1);';
@@ -262,11 +416,12 @@
 
                 const deadlineHtml = formatDeadline(pData.inzage_status);
                 const roadCount = match.road_count || 1;
+                const hasGeometry = match.permit_geom && match.road_geoms;
 
                 card.innerHTML = `
-                    <a href="output_maps/${match.map_file}" target="_blank" class="card-map-link">
+                    <div class="card-map-link" onclick='openMapModal(${JSON.stringify(match).replace(/'/g, "&#39;")})' style="cursor: pointer;" title="Bekijk kaart">
                         <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.3"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
-                    </a>
+                    </div>
                     <div class="card-content">
                         <span class="card-municipality">${match.municipality}</span>
                         <h3 class="card-title">${pData.projectnummer || pData.referentie_project || 'Onbekend Project'}</h3>
@@ -277,7 +432,7 @@
                     </div>
                     <div class="card-footer">
                         <span style="font-size: 0.75rem; color: var(--text-dim)">${deadlineHtml}</span>
-                        <a href="${pData.inzageloket_link || pData.project_link || '#'}" target="_blank" class="btn-icon" title="View in Inzageloket">
+                        <a href="${pData.inzageloket_link || pData.project_link || '#'}" target="_blank" class="btn-icon" title="Bekijk op Inzageloket" onclick="event.stopPropagation()">
                             <i data-lucide="external-link" style="width: 18px"></i>
                         </a>
                     </div>
