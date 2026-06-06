@@ -440,8 +440,8 @@
             lucide.createIcons();
         }
 
-        // Event delegation for map clicks — uses data-index on each card
-        document.getElementById('matches-grid').addEventListener('click', function(e) {
+        // Event delegation on document — catches all card clicks
+        document.addEventListener('click', function(e) {
             if (e.target.closest('.btn-icon')) return;
             const card = e.target.closest('.match-card');
             if (!card || card.dataset.idx === undefined) return;
