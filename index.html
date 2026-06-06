@@ -209,6 +209,7 @@
         const ROAD_COLORS = ['#3b82f6', '#8b5cf6', '#22c55e', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899'];
 
         function openMapModal(match) {
+            console.log('openMapModal called', match.permit_data?.projectnummer);
             const modal = document.getElementById('map-modal');
             modal.classList.add('active');
 
@@ -449,12 +450,13 @@
 
         // Event delegation for map clicks — click anywhere on card (except external link)
         document.getElementById('matches-grid').addEventListener('click', function(e) {
-            // Don't open map if clicking the external link button
             if (e.target.closest('.btn-icon')) return;
             const card = e.target.closest('.match-card');
             if (!card) return;
-            const allCards = Array.from(grid.querySelectorAll('.match-card'));
+            const gridEl = document.getElementById('matches-grid');
+            const allCards = Array.from(gridEl.querySelectorAll('.match-card'));
             const matchIdx = allCards.indexOf(card);
+            console.log('Card clicked, index:', matchIdx, 'matches:', lastRenderedMatches.length);
             if (matchIdx >= 0 && lastRenderedMatches[matchIdx]) {
                 openMapModal(lastRenderedMatches[matchIdx]);
             }
