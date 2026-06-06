@@ -209,7 +209,6 @@
         const ROAD_COLORS = ['#3b82f6', '#8b5cf6', '#22c55e', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899'];
 
         function openMapModal(match) {
-            console.log('openMapModal called', match.permit_data?.projectnummer);
             const modal = document.getElementById('map-modal');
             modal.classList.add('active');
 
@@ -254,17 +253,9 @@
                 attribution: '© OpenStreetMap'
             }).addTo(mapInstance);
 
-            // Atlas der Buurtwegen WMS
-            L.tileLayer.wms(
-                'https://geoservices.informatievlaanderen.be/overdrachtdienst/AtlasBuurtwegen/wms',
-                { layers: 'AtlasBuurtwegen', format: 'image/png', transparent: true, opacity: 0.6 }
-            ).addTo(mapInstance);
-
-            // Aerial photo WMS
-            L.tileLayer.wms(
-                'https://geo.api.vlaanderen.be/Luchtfoto/wms',
-                { layers: 'Luchtfoto', format: 'image/png', transparent: true, opacity: 0.8 }
-            ).addTo(mapInstance);
+            // NOTE: WMS layers (Atlas der Buurtwegen, Luchtfoto) are disabled because
+            // GitHub Pages cannot resolve internal Flemish government DNS names.
+            // The permit polygon and road geometries are still shown as GeoJSON overlays.
 
             // Permit polygon
             if (permitGeom) {
@@ -456,7 +447,6 @@
             const gridEl = document.getElementById('matches-grid');
             const allCards = Array.from(gridEl.querySelectorAll('.match-card'));
             const matchIdx = allCards.indexOf(card);
-            console.log('Card clicked, index:', matchIdx, 'matches:', lastRenderedMatches.length);
             if (matchIdx >= 0 && lastRenderedMatches[matchIdx]) {
                 openMapModal(lastRenderedMatches[matchIdx]);
             }
