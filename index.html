@@ -315,6 +315,7 @@
 
         // --- Main ---
         let allMatches = [];
+        let lastRenderedMatches = [];
 
         async function loadDashboard() {
             try {
@@ -383,6 +384,7 @@
         function renderMatches(matches) {
             const grid = document.getElementById('matches-grid');
             grid.innerHTML = '';
+            lastRenderedMatches = matches;
 
             if (matches.length === 0) {
                 grid.innerHTML = `
@@ -422,7 +424,7 @@
                     : `<svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.15"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
 
                 card.innerHTML = `
-                    <div class="card-map-link" onclick='openMapModal(${JSON.stringify(match).replace(/'/g, "&#39;")})' style="cursor: pointer;" title="${hasGeometry ? 'Bekijk kaart' : 'Kaart niet beschikbaar (oude entry)'}">
+                    <div class="card-map-link" title="${hasGeometry ? 'Bekijk kaart' : 'Kaart niet beschikbaar (oude entry)'}">
                         ${mapIcon}
                     </div>
                     <div class="card-content">
@@ -444,6 +446,19 @@
             });
             lucide.createIcons();
         }
+
+        // Event delegation for map clicks — click anywhere on card (except external link)
+        document.getElementById('matches-grid').addEventListener('click', function(e) {
+            // Don't open map if clicking the external link button
+            if (e.target.closest('.btn-icon')) return;
+            const card = e.target.closest('.match-card');
+            if (!card) return;
+            const allCards = Array.from(grid.querySelectorAll('.match-card'));
+            const matchIdx = allCards.indexOf(card);
+            if (matchIdx >= 0 && lastRenderedMatches[matchIdx]) {
+                openMapModal(lastRenderedMatches[matchIdx]);
+            }
+        });
 
         loadDashboard();
     </script>
