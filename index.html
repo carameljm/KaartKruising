@@ -388,7 +388,7 @@
 
             let lastExpired = false;
 
-            matches.forEach(match => {
+            matches.forEach((match, i) => {
                 const pData = match.permit_data;
                 const rData = match.road_data;
                 const expired = isExpired(pData.inzage_status);
@@ -403,6 +403,7 @@
 
                 const card = document.createElement('div');
                 card.className = 'match-card';
+                card.dataset.idx = i;
                 if (expired) {
                     card.style.opacity = '0.6';
                     card.style.filter = 'grayscale(0.3)';
@@ -439,16 +440,14 @@
             lucide.createIcons();
         }
 
-        // Event delegation for map clicks — click anywhere on card (except external link)
+        // Event delegation for map clicks — uses data-index on each card
         document.getElementById('matches-grid').addEventListener('click', function(e) {
             if (e.target.closest('.btn-icon')) return;
             const card = e.target.closest('.match-card');
-            if (!card) return;
-            const gridEl = document.getElementById('matches-grid');
-            const allCards = Array.from(gridEl.querySelectorAll('.match-card'));
-            const matchIdx = allCards.indexOf(card);
-            if (matchIdx >= 0 && lastRenderedMatches[matchIdx]) {
-                openMapModal(lastRenderedMatches[matchIdx]);
+            if (!card || card.dataset.idx === undefined) return;
+            const idx = parseInt(card.dataset.idx);
+            if (lastRenderedMatches[idx]) {
+                openMapModal(lastRenderedMatches[idx]);
             }
         });
 
