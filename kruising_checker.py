@@ -1,7 +1,6 @@
 import geopandas as gpd
 import pandas as pd
 import requests
-import folium
 import os
 import argparse
 import json
@@ -9,8 +8,7 @@ import logging
 import time
 from io import StringIO
 from datetime import datetime, timedelta
-from shapely.geometry import box
-from shapely import wkt
+from shapely.geometry import box, mapping
 
 # --- Logging setup ---
 logging.basicConfig(
@@ -33,13 +31,8 @@ ALLOWED_MUNICIPALITIES = [
     "Ronse", "Waregem", "Wortegem-Petegem", "Zottegem", "Zulte", "Zwalm"
 ]
 
-PENDING_FILE = "pending_intersections.json"
 MATCHES_FILE = "output_maps/matches.json"
-
-# --- Retry settings ---
-MAX_RETRIES = 3
-RETRY_DELAY = 2
-REQUEST_DELAY = 0.5
+PENDING_FILE = "pending_intersections.json"
 
 
 def load_json(path, default=None):
@@ -86,47 +79,6 @@ def lookup_municipality(point_geom):
     return "Onbekend"
 
 
-def check_inzageloket(projectnummer):
-    """Check Inzageloket with retry logic and exponential backoff."""
-    url = "https://omgevingsloketinzage.omgeving.vlaanderen.be/proxy-omv-up/rs/v1/inzage/projecten/header"
-    params = {"projectnummer": projectnummer}
-    headers = {
-        "Accept": "application/json, text/plain, */*",
-        "Referer": f"https://omgevingsloketinzage.omgeving.vlaanderen.be/{projectnummer}",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
-
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            r = requests.get(url, params=params, headers=headers, timeout=10)
-            if r.status_code == 200:
-                data = r.json()
-                if data and "uuid" in data:
-                    return data
-                log.debug("Inzageloket returned empty data for %s (attempt %d)", projectnummer, attempt)
-            elif r.status_code == 429:
-                wait = RETRY_DELAY * (2 ** attempt)
-                log.warning("Rate limited on Inzageloket for %s, waiting %ds (attempt %d/%d)", projectnummer, wait, attempt, MAX_RETRIES)
-                time.sleep(wait)
-                continue
-            else:
-                log.warning("Inzageloket returned %d for %s (attempt %d/%d)", r.status_code, projectnummer, attempt, MAX_RETRIES)
-        except requests.exceptions.Timeout:
-            log.warning("Timeout checking Inzageloket for %s (attempt %d/%d)", projectnummer, attempt, MAX_RETRIES)
-        except requests.exceptions.ConnectionError:
-            log.warning("Connection error checking Inzageloket for %s (attempt %d/%d)", projectnummer, attempt, MAX_RETRIES)
-        except Exception as e:
-            log.warning("Error checking Inzageloket for %s: %s (attempt %d/%d)", projectnummer, e, attempt, MAX_RETRIES)
-
-        if attempt < MAX_RETRIES:
-            wait = RETRY_DELAY * attempt
-            log.info("Retrying %s in %ds...", projectnummer, wait)
-            time.sleep(wait)
-
-    log.error("All %d attempts failed for %s", MAX_RETRIES, projectnummer)
-    return None
-
-
 def load_local_roads(base_dir):
     log.info("Loading local road data from '%s'...", base_dir)
     path_buurt = os.path.join(base_dir, "buurtwegenoostvlaanderen.geojson")
@@ -139,7 +91,6 @@ def load_local_roads(base_dir):
 
     if missing_files:
         log.error("Missing road data files: %s", ", ".join(missing_files))
-        log.error("Download them from https://github.com/carameljm/buurtwegenomgevingsdossiers and place in '%s'", base_dir)
         raise FileNotFoundError(
             f"Road data files not found in '{base_dir}': {', '.join(missing_files)}. "
             f"Download from https://github.com/carameljm/buurtwegenomgevingsdossiers"
@@ -215,65 +166,6 @@ def clean_data_dict(row, exclude_cols):
     return new_d
 
 
-def generate_map(permit_geom, road_geoms, permit_data, road_data_list, output_path, context_roads_gdf=None):
-    permit_geom_4326 = gpd.GeoSeries([permit_geom], crs="EPSG:31370").to_crs("EPSG:4326")[0]
-    center_y, center_x = permit_geom_4326.centroid.y, permit_geom_4326.centroid.x
-
-    m = folium.Map(location=[center_y, center_x], zoom_start=17, tiles="OpenStreetMap")
-
-    folium.WmsTileLayer(
-        url="https://geoservices.informatievlaanderen.be/overdrachtdienst/AtlasBuurtwegen/wms",
-        layers="AtlasBuurtwegen", name="Atlas der Buurtwegen (1841)", fmt="image/png",
-        transparent=True, overlay=True, control=True, attr="Digitaal Vlaanderen", show=False
-    ).add_to(m)
-
-    folium.WmsTileLayer(
-        url="https://geo.api.vlaanderen.be/Luchtfoto/wms",
-        layers="Luchtfoto", name="Luchtfoto (Vlaanderen)", fmt="image/png",
-        transparent=True, overlay=True, control=True, attr="Digitaal Vlaanderen", show=False
-    ).add_to(m)
-
-    def make_html_table(data, title):
-        html = f"<h4>{title}</h4><table style=\"width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px;\">"
-        for k, v in data.items():
-            val_display = f"<a href=\'{v}\' target=\'_blank\'>Klik hier</a>" if isinstance(v, str) and v.startswith("http") else str(v)
-            html += f"<tr style=\"border-bottom: 1px solid #ddd;\"><td style=\"padding: 4px; font-weight: bold;\">{k}</td><td style=\"padding: 4px;\">{val_display}</td></tr>"
-        return html + "</table>"
-
-    permit_html = make_html_table(permit_data, "Omgevingsvergunning Data")
-    folium.GeoJson(
-        data=gpd.GeoSeries([permit_geom_4326]).to_json(),
-        name="Omgevingsvergunning",
-        style_function=lambda x: {"fillColor": "#ff7800", "color": "#ff7800", "fillOpacity": 0.4},
-        tooltip="Omgevingsvergunning",
-        popup=folium.Popup(permit_html, max_width=400)
-    ).add_to(m)
-
-    if hasattr(road_geoms, "geom_type") and road_geoms.geom_type == "MultiLineString":
-        road_geoms = list(road_geoms.geoms)
-    elif not isinstance(road_geoms, list):
-        road_geoms = [road_geoms]
-
-    if not isinstance(road_data_list, list):
-        road_data_list = [road_data_list]
-
-    for idx, (road_geom, road_data) in enumerate(zip(road_geoms, road_data_list)):
-        road_geom_4326 = gpd.GeoSeries([road_geom], crs="EPSG:31370").to_crs("EPSG:4326")[0]
-        road_html = make_html_table(road_data, f"Buurtweg {idx+1} (Match)")
-        road_name = f"Buurtweg {idx+1}: {road_data.get('DETAILPLAN', 'onbekend')} nr {road_data.get('NR', '?')}"
-
-        folium.GeoJson(
-            data=gpd.GeoSeries([road_geom_4326]).to_json(),
-            name=road_name,
-            style_function=lambda x, i=idx: {"color": ["blue", "purple", "green", "orange", "red"][i % 5], "weight": 5},
-            tooltip=road_name,
-            popup=folium.Popup(road_html, max_width=400)
-        ).add_to(m)
-
-    folium.LayerControl().add_to(m)
-    m.save(output_path)
-
-
 def _group_pending_by_project(pending_queue):
     """Group pending entries by projectnummer, collecting all roads per project."""
     grouped = {}
@@ -283,13 +175,13 @@ def _group_pending_by_project(pending_queue):
             grouped[pn] = {
                 "municipality": item["municipality"],
                 "permit_data": item["permit_data"],
-                "permit_geom_wkt": item["permit_geom_wkt"],
+                "permit_geom": item["permit_geom"],
                 "roads": [],
                 "discovered_at": item["discovered_at"],
             }
         grouped[pn]["roads"].append({
             "road_data": item["road_data"],
-            "road_geom_wkt": item["road_geom_wkt"],
+            "road_geom": item["road_geom"],
         })
     return list(grouped.values())
 
@@ -326,9 +218,9 @@ def main():
         permits_gdf["geometry_buffered"] = permits_gdf.geometry.buffer(-1.0)
         valid_permits = permits_gdf[~permits_gdf.geometry_buffered.is_empty].copy().set_geometry("geometry_buffered")
 
-        matches = gpd.sjoin(valid_permits, roads_gdf, how="inner", predicate="intersects")
+        spatial_matches = gpd.sjoin(valid_permits, roads_gdf, how="inner", predicate="intersects")
         new_count = 0
-        for idx, match_row in matches.iterrows():
+        for idx, match_row in spatial_matches.iterrows():
             permit_row = permits_gdf.loc[idx]
             project_num = permit_row.get("projectnummer")
             if not project_num or project_num in existing_projectnums or project_num in pending_projectnums:
@@ -337,12 +229,16 @@ def main():
             municipality = lookup_municipality(permit_row.geometry.centroid)
             if municipality in ALLOWED_MUNICIPALITIES:
                 road_row = roads_gdf.loc[match_row["index_right"]]
+                # Store geometry as GeoJSON dict (EPSG:4326) for inline map rendering
+                permit_geom_4326 = gpd.GeoSeries([permit_row.geometry], crs="EPSG:31370").to_crs("EPSG:4326")[0]
+                road_geom_4326 = gpd.GeoSeries([road_row.geometry], crs="EPSG:31370").to_crs("EPSG:4326")[0]
+
                 pending_queue.append({
                     "municipality": municipality,
                     "permit_data": clean_data_dict(permit_row, ["geometry", "geometry_buffered"]),
                     "road_data": clean_data_dict(road_row, ["geometry"]),
-                    "permit_geom_wkt": str(permit_row.geometry),
-                    "road_geom_wkt": str(road_row.geometry),
+                    "permit_geom": mapping(permit_geom_4326),
+                    "road_geom": mapping(road_geom_4326),
                     "discovered_at": datetime.now().isoformat()
                 })
                 pending_projectnums.add(project_num)
@@ -356,7 +252,7 @@ def main():
         log.info("No pending items to process.")
         return
 
-    # Group pending by project (1 map per project, all roads included)
+    # Group pending by project (1 entry per project, all roads included)
     grouped_pending = _group_pending_by_project(pending_queue)
     log.info("Processing %d unique projects (%d total roads)...",
              len(grouped_pending), len(pending_queue))
@@ -367,7 +263,6 @@ def main():
     for group in grouped_pending:
         project_num = group["permit_data"].get("projectnummer")
 
-        # Skip if already in validated matches
         if project_num in validated_projectnums or project_num in existing_projectnums:
             continue
 
@@ -381,20 +276,13 @@ def main():
         #   2. Fetch the inzage_status (e.g. "Het openbaar onderzoek loopt tot en met DD.MM.YYYY")
         #   3. Only then add to validated_matches
         # For now, all discovered intersections are shown directly without Inzageloket validation.
-        # This means some matches may not yet be publicly available on the Inzageloket.
 
         group["permit_data"]["inzageloket_link"] = f"https://omgevingsloketinzage.omgeving.vlaanderen.be/{project_num}"
         group["permit_data"]["inzage_status"] = "Nog niet gevalideerd op Inzageloket"
 
-        pg = wkt.loads(group["permit_geom_wkt"])
-        road_geoms = [wkt.loads(r["road_geom_wkt"]) for r in group["roads"]]
+        # Build road geometries list for the inline map
+        road_geoms = [r["road_geom"] for r in group["roads"]]
         road_data_list = [r["road_data"] for r in group["roads"]]
-
-        file_id = str(group["permit_data"].get("referentie_project") or project_num).replace("/", "-").replace(":", "")
-        filename = f"match_{file_id}.html"
-
-        generate_map(pg, road_geoms, group["permit_data"], road_data_list,
-                     os.path.join(args.output, filename))
 
         validated_matches.append({
             "match_id": len(validated_matches),
@@ -402,14 +290,14 @@ def main():
             "permit_data": group["permit_data"],
             "road_data": group["roads"][0]["road_data"],
             "road_count": len(group["roads"]),
-            "map_file": filename,
+            "permit_geom": group["permit_geom"],
+            "road_geoms": road_geoms,
             "validated_at": datetime.now().isoformat()
         })
         validated_projectnums.add(project_num)
         newly_validated += 1
 
     save_json(MATCHES_FILE, validated_matches)
-    # Clear pending queue since all items are now processed
     save_json(PENDING_FILE, [])
     log.info("Done. Newly matched: %d", newly_validated)
 
