@@ -353,69 +353,65 @@ def main():
             save_json(PENDING_FILE, pending_queue)
 
     if not pending_queue:
-        log.info("No pending items to validate.")
+        log.info("No pending items to process.")
         return
 
-    # Group pending by project for validation (1 validation call per project)
+    # Group pending by project (1 map per project, all roads included)
     grouped_pending = _group_pending_by_project(pending_queue)
-    log.info("Validating %d unique projects (%d total roads) against Inzageloket...",
+    log.info("Processing %d unique projects (%d total roads)...",
              len(grouped_pending), len(pending_queue))
 
-    still_pending, newly_validated = [], 0
+    newly_validated = 0
     validated_projectnums = set()
 
     for group in grouped_pending:
         project_num = group["permit_data"].get("projectnummer")
 
-        # Skip if already validated in this run
-        if project_num in validated_projectnums:
+        # Skip if already in validated matches
+        if project_num in validated_projectnums or project_num in existing_projectnums:
             continue
 
-        inzage_data = check_inzageloket(project_num)
+        log.info("MATCH: %s (%d roads)", project_num, len(group["roads"]))
 
-        if inzage_data:
-            log.info("VALIDATED: %s (%d roads)", project_num, len(group["roads"]))
-            group["permit_data"]["inzageloket_link"] = f"https://omgevingsloketinzage.omgeving.vlaanderen.be/{project_num}"
-            group["permit_data"]["inzage_status"] = inzage_data.get("toestand", "Onbekend")
+        # TODO: Re-enable Inzageloket validation when Anubis bot protection is resolved.
+        # The Inzageloket API (omgevingsloketinzage.omgeving.vlaanderen.be) now requires
+        # JavaScript-based Proof-of-Work (Anubis v1.25.0), which blocks headless requests.
+        # When this is fixed, restore the check_inzageloket() call here to:
+        #   1. Confirm the dossier is publicly available on the Inzageloket
+        #   2. Fetch the inzage_status (e.g. "Het openbaar onderzoek loopt tot en met DD.MM.YYYY")
+        #   3. Only then add to validated_matches
+        # For now, all discovered intersections are shown directly without Inzageloket validation.
+        # This means some matches may not yet be publicly available on the Inzageloket.
 
-            pg = wkt.loads(group["permit_geom_wkt"])
-            road_geoms = [wkt.loads(r["road_geom_wkt"]) for r in group["roads"]]
-            road_data_list = [r["road_data"] for r in group["roads"]]
+        group["permit_data"]["inzageloket_link"] = f"https://omgevingsloketinzage.omgeving.vlaanderen.be/{project_num}"
+        group["permit_data"]["inzage_status"] = "Nog niet gevalideerd op Inzageloket"
 
-            file_id = str(group["permit_data"].get("referentie_project") or project_num).replace("/", "-").replace(":", "")
-            filename = f"match_{file_id}.html"
+        pg = wkt.loads(group["permit_geom_wkt"])
+        road_geoms = [wkt.loads(r["road_geom_wkt"]) for r in group["roads"]]
+        road_data_list = [r["road_data"] for r in group["roads"]]
 
-            generate_map(pg, road_geoms, group["permit_data"], road_data_list,
-                         os.path.join(args.output, filename))
+        file_id = str(group["permit_data"].get("referentie_project") or project_num).replace("/", "-").replace(":", "")
+        filename = f"match_{file_id}.html"
 
-            validated_matches.append({
-                "match_id": len(validated_matches),
-                "municipality": group["municipality"],
-                "permit_data": group["permit_data"],
-                "road_data": group["roads"][0]["road_data"],
-                "road_count": len(group["roads"]),
-                "map_file": filename,
-                "validated_at": datetime.now().isoformat()
-            })
-            validated_projectnums.add(project_num)
-            newly_validated += 1
-        else:
-            # Keep all roads for this project as still pending
-            for road in group["roads"]:
-                still_pending.append({
-                    "municipality": group["municipality"],
-                    "permit_data": group["permit_data"],
-                    "road_data": road["road_data"],
-                    "permit_geom_wkt": group["permit_geom_wkt"],
-                    "road_geom_wkt": road["road_geom_wkt"],
-                    "discovered_at": group["discovered_at"],
-                })
+        generate_map(pg, road_geoms, group["permit_data"], road_data_list,
+                     os.path.join(args.output, filename))
 
-        time.sleep(REQUEST_DELAY)
+        validated_matches.append({
+            "match_id": len(validated_matches),
+            "municipality": group["municipality"],
+            "permit_data": group["permit_data"],
+            "road_data": group["roads"][0]["road_data"],
+            "road_count": len(group["roads"]),
+            "map_file": filename,
+            "validated_at": datetime.now().isoformat()
+        })
+        validated_projectnums.add(project_num)
+        newly_validated += 1
 
     save_json(MATCHES_FILE, validated_matches)
-    save_json(PENDING_FILE, still_pending)
-    log.info("Done. Newly validated: %d, Still pending: %d", newly_validated, len(still_pending))
+    # Clear pending queue since all items are now processed
+    save_json(PENDING_FILE, [])
+    log.info("Done. Newly matched: %d", newly_validated)
 
 
 if __name__ == "__main__":
