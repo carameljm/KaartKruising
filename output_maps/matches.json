@@ -2205,5 +2205,154 @@
       }
     ],
     "validated_at": "2026-06-06T17:34:09.914044"
+  },
+  {
+    "match_id": 9,
+    "municipality": "Geraardsbergen",
+    "permit_data": {
+      "id": 1000478,
+      "projectnummer": "2026067299",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Nieuwbouw van bijgebouwen, niet-overdekte lage constructies en andere handelingen",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-06-06T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-06-07T00:00:00",
+      "vvo_huidige_toestand": "Geraardsbergen",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "HJHnFyJ9RluNG234_Ek-7A",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026067299",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026067299",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 32099.0,
+      "NR": "20",
+      "TYPE": "c",
+      "LENGTH": 233.872,
+      "GEMID": "282",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/282-D-005.sid",
+      "CEVI_OID": 32070,
+      "GEMEENTE": "Zarlardinge",
+      "DETAILPLAN": "282-D-005",
+      "TYPE_LABEL": "chemin",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.827090099132126,
+              50.76139938548104
+            ],
+            [
+              3.8267846534545704,
+              50.76113514328328
+            ],
+            [
+              3.8267279100839926,
+              50.761568403473994
+            ],
+            [
+              3.82672745989526,
+              50.76157180858477
+            ],
+            [
+              3.8270157710082113,
+              50.7615819515813
+            ],
+            [
+              3.827125858896311,
+              50.76158582256502
+            ],
+            [
+              3.827194107714312,
+              50.76158822357548
+            ],
+            [
+              3.8272229969506393,
+              50.76158923806064
+            ],
+            [
+              3.82722319527357,
+              50.76158924796682
+            ],
+            [
+              3.827244353555228,
+              50.761582153751846
+            ],
+            [
+              3.8272411905749073,
+              50.761571234326176
+            ],
+            [
+              3.827237209821251,
+              50.7615574702971
+            ],
+            [
+              3.8272367057770316,
+              50.76155692857131
+            ],
+            [
+              3.82720331731274,
+              50.76152065268482
+            ],
+            [
+              3.827090099132126,
+              50.76139938548104
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.827306262690453,
+              50.76160822292597
+            ],
+            [
+              3.8273266146769425,
+              50.76158629694277
+            ],
+            [
+              3.8273184233155195,
+              50.76150397675966
+            ],
+            [
+              3.827098795345084,
+              50.76137664062828
+            ],
+            [
+              3.8266884035046207,
+              50.76115455072862
+            ],
+            [
+              3.8263337596324347,
+              50.760692823074656
+            ],
+            [
+              3.8261001751072294,
+              50.76034986283578
+            ],
+            [
+              3.8257518376837596,
+              50.75981746902885
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-06-07T07:02:49.708719"
   }
 ]
