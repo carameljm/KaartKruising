@@ -17185,5 +17185,311 @@
       }
     ],
     "validated_at": "2026-07-01T07:07:47.238771"
+  },
+  {
+    "match_id": 67,
+    "municipality": "Geraardsbergen",
+    "permit_data": {
+      "id": 1007083,
+      "projectnummer": "2026075977",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Functiewijziging zonder verbouwingswerken",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-07-01T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-07-02T00:00:00",
+      "vvo_huidige_toestand": "Geraardsbergen",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "QcgNR-myR3CjSlKYBwGzow",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026075977",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026075977",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 20438.0,
+      "NR": "48",
+      "TYPE": "s",
+      "LENGTH": 216.365,
+      "GEMID": "175",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/175-D-008.sid",
+      "CEVI_OID": 20413,
+      "GEMEENTE": "Onkerzele",
+      "DETAILPLAN": "175-D-008",
+      "TYPE_LABEL": "sentier",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.890061555847795,
+              50.77472054640175
+            ],
+            [
+              3.8900711338674725,
+              50.77457592947854
+            ],
+            [
+              3.889994292643803,
+              50.77456028806298
+            ],
+            [
+              3.8899898934426056,
+              50.774657028090004
+            ],
+            [
+              3.889958614791676,
+              50.77465584857264
+            ],
+            [
+              3.889958997751157,
+              50.77472005579749
+            ],
+            [
+              3.889959226181782,
+              50.77475899186247
+            ],
+            [
+              3.8900604849434957,
+              50.77473665187948
+            ],
+            [
+              3.890061555847795,
+              50.77472054640175
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.8875110754671587,
+              50.77516459691485
+            ],
+            [
+              3.887641181899619,
+              50.77513152212662
+            ],
+            [
+              3.888176116379904,
+              50.77500971373801
+            ],
+            [
+              3.888553305436994,
+              50.77494288370657
+            ],
+            [
+              3.888606294422246,
+              50.77494425947065
+            ],
+            [
+              3.8887065068216606,
+              50.774974801089556
+            ],
+            [
+              3.8898710721538166,
+              50.77476400695334
+            ],
+            [
+              3.8900835818375485,
+              50.77471504191253
+            ],
+            [
+              3.8901368896507056,
+              50.77468512814069
+            ],
+            [
+              3.890188105481161,
+              50.77450107266376
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-07-02T06:36:33.293394"
+  },
+  {
+    "match_id": 68,
+    "municipality": "Deinze",
+    "permit_data": {
+      "id": 1009458,
+      "projectnummer": "2026082298",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bouwen of herbouwen; Slopen van niet vrijstaande gebouwen of constructies",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-07-01T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-07-02T00:00:00",
+      "vvo_huidige_toestand": "Deinze",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "9u8IGP9nS--Y0I2F_AxZmA",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026082298",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026082298",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 4296.0,
+      "NR": "69",
+      "TYPE": "s",
+      "LENGTH": 575.044,
+      "GEMID": "036",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/036-D-010.sid",
+      "CEVI_OID": 4290,
+      "GEMEENTE": "Deinze",
+      "DETAILPLAN": "036-D-010",
+      "TYPE_LABEL": "sentier",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.4988508299572874,
+              50.98521083723982
+            ],
+            [
+              3.49934019767325,
+              50.98528135410767
+            ],
+            [
+              3.499393244418382,
+              50.98528935119016
+            ],
+            [
+              3.4995287516100118,
+              50.98530977866086
+            ],
+            [
+              3.499574157262097,
+              50.985316631481815
+            ],
+            [
+              3.4997442052475076,
+              50.98534227606455
+            ],
+            [
+              3.5004827604989566,
+              50.98385172224151
+            ],
+            [
+              3.499492050867001,
+              50.983768896890936
+            ],
+            [
+              3.4993077268662787,
+              50.98418642251933
+            ],
+            [
+              3.4993032374368305,
+              50.98419658374884
+            ],
+            [
+              3.4992092830819446,
+              50.98440938758108
+            ],
+            [
+              3.4992070534193846,
+              50.98441442335617
+            ],
+            [
+              3.4992026821995603,
+              50.984424351720854
+            ],
+            [
+              3.4988521967480066,
+              50.98520779082218
+            ],
+            [
+              3.4988508299572874,
+              50.98521083723982
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.5057534290240584,
+              50.98441014957532
+            ],
+            [
+              3.505696990401432,
+              50.98438423999183
+            ],
+            [
+              3.5051825854495955,
+              50.98430282223647
+            ],
+            [
+              3.5047793263977614,
+              50.98426741485655
+            ],
+            [
+              3.5042617205351845,
+              50.98426013860916
+            ],
+            [
+              3.504255829490811,
+              50.98428095516854
+            ],
+            [
+              3.5027371756034964,
+              50.98449693443741
+            ],
+            [
+              3.5022272696393224,
+              50.984569667963484
+            ],
+            [
+              3.501702547677073,
+              50.98464924464116
+            ],
+            [
+              3.501447618228728,
+              50.984634619281486
+            ],
+            [
+              3.5005810793832466,
+              50.98453320304556
+            ],
+            [
+              3.499959952349739,
+              50.984464882456415
+            ],
+            [
+              3.4992132357315073,
+              50.98433768569341
+            ],
+            [
+              3.4988184454491202,
+              50.98523174633736
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-07-02T06:36:33.293448"
   }
 ]
