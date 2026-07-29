@@ -36941,5 +36941,126 @@
       }
     ],
     "validated_at": "2026-07-27T06:23:40.510512"
+  },
+  {
+    "match_id": 121,
+    "municipality": "Oudenaarde",
+    "permit_data": {
+      "id": 1013259,
+      "projectnummer": "2026083010",
+      "project_type_code": "OMV2017_VK_BIJSTELLING",
+      "handeling_omschrijving": "Verwijderen van vrijstaande gebouwen",
+      "aanvrager": "METAE (0501969951); Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Bijstelling van een bestaande verkaveling",
+      "datum_indiening": "2026-07-27T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-07-28T00:00:00",
+      "vvo_huidige_toestand": "Oudenaarde",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "pOUvFltYTOiNwaMRpnV0GQ",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026083010",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026083010",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": null,
+      "NR": "54",
+      "TYPE": "A",
+      "LENGTH": null,
+      "GEMID": "053",
+      "PLANID": "053-D-002",
+      "CEVI_OID": 2406,
+      "GEMEENTE": "Eine",
+      "DETAILPLAN": null,
+      "TYPE_LABEL": "Afschaffing",
+      "bron_bestand": "wijzigingen",
+      "IDWIJZIGIN": "053-00039",
+      "DATUM": "1999-05-12T02:00:00",
+      "LINK": "https://geodiensten.oost-vlaanderen.be/Bijlagen/Wijzigingen/053-00039-01.pdf"
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.6191939999058738,
+              50.87463661480365
+            ],
+            [
+              3.6183468035093678,
+              50.87458587830433
+            ],
+            [
+              3.6183331207841722,
+              50.87465353877702
+            ],
+            [
+              3.6183287557468877,
+              50.874675095639795
+            ],
+            [
+              3.6183095822828415,
+              50.8747698525468
+            ],
+            [
+              3.6183094743689956,
+              50.87477038226144
+            ],
+            [
+              3.618302732620328,
+              50.87480375464603
+            ],
+            [
+              3.61830253286444,
+              50.874804697309266
+            ],
+            [
+              3.6183018697386515,
+              50.87480796539605
+            ],
+            [
+              3.6183024233854435,
+              50.874807995903026
+            ],
+            [
+              3.619160216850032,
+              50.87486092193846
+            ],
+            [
+              3.6191884540823116,
+              50.874670767999355
+            ],
+            [
+              3.6191939999058738,
+              50.87463661480365
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.6181904917432153,
+              50.874595308754344
+            ],
+            [
+              3.619237234030215,
+              50.874655302905516
+            ],
+            [
+              3.6204309581539444,
+              50.87399654508206
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-07-29T05:45:56.687631"
   }
 ]
