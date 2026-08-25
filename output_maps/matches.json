@@ -46946,5 +46946,339 @@
       }
     ],
     "validated_at": "2026-08-24T03:49:20.690254"
+  },
+  {
+    "match_id": 160,
+    "municipality": "Kruisem",
+    "permit_data": {
+      "id": 1021810,
+      "projectnummer": "2026098766",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Verbouwen en/of uitbreiden zonder functiewijziging en zonder wijziging van aantal woongelegenheden",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-08-23T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-08-24T00:00:00",
+      "vvo_huidige_toestand": "Kruisem",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "JXXY2xcPQce0iFd_IMCWoQ",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026098766",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026098766",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 12412.0,
+      "NR": "38",
+      "TYPE": "c",
+      "LENGTH": 745.468,
+      "GEMID": "109",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/109-D-003.sid",
+      "CEVI_OID": 12396,
+      "GEMEENTE": "Kruishoutem",
+      "DETAILPLAN": "109-D-003",
+      "TYPE_LABEL": "chemin",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.5418536077226337,
+              50.93958935851353
+            ],
+            [
+              3.542045099450144,
+              50.93963906994055
+            ],
+            [
+              3.5423159365916526,
+              50.93968349523354
+            ],
+            [
+              3.542339864914781,
+              50.939685326487236
+            ],
+            [
+              3.542569996595851,
+              50.93970299013138
+            ],
+            [
+              3.5425603458128774,
+              50.93972504629614
+            ],
+            [
+              3.542557840442767,
+              50.939730773194526
+            ],
+            [
+              3.542700931520165,
+              50.93975766897185
+            ],
+            [
+              3.542776830421357,
+              50.9397784291251
+            ],
+            [
+              3.5427882278736007,
+              50.93977435586812
+            ],
+            [
+              3.5436141653126576,
+              50.939479191993264
+            ],
+            [
+              3.543630570977003,
+              50.93942006415155
+            ],
+            [
+              3.543631796540943,
+              50.93939566537783
+            ],
+            [
+              3.543635629668458,
+              50.939318424732285
+            ],
+            [
+              3.543580774596587,
+              50.93908799027048
+            ],
+            [
+              3.5435547707734427,
+              50.93898082890522
+            ],
+            [
+              3.5435486607178133,
+              50.93898279975578
+            ],
+            [
+              3.543481508241539,
+              50.93900440758039
+            ],
+            [
+              3.541859134955756,
+              50.93958736567315
+            ],
+            [
+              3.5418536077226337,
+              50.93958935851353
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.5387989924207868,
+              50.93812311557815
+            ],
+            [
+              3.5397714840435484,
+              50.93799670188284
+            ],
+            [
+              3.5398750267375045,
+              50.93878084426799
+            ],
+            [
+              3.5399193411996768,
+              50.93886807295118
+            ],
+            [
+              3.5400006614997452,
+              50.93893702085991
+            ],
+            [
+              3.5402519259551086,
+              50.939041933257805
+            ],
+            [
+              3.541727546929151,
+              50.93961322293802
+            ],
+            [
+              3.541990433866531,
+              50.939683446020126
+            ],
+            [
+              3.5423508090947,
+              50.93973812870876
+            ],
+            [
+              3.542484608509727,
+              50.93974370482038
+            ],
+            [
+              3.5426403947439207,
+              50.93975059310603
+            ],
+            [
+              3.5429320982621437,
+              50.93974684772411
+            ],
+            [
+              3.5434666819390976,
+              50.93969960891371
+            ],
+            [
+              3.5434374624209495,
+              50.93979675017817
+            ],
+            [
+              3.543260545504334,
+              50.94005278293291
+            ],
+            [
+              3.543549216320884,
+              50.940221689423566
+            ],
+            [
+              3.545227061471916,
+              50.94118953554521
+            ],
+            [
+              3.5458098754748084,
+              50.94153085246882
+            ],
+            [
+              3.546028025798894,
+              50.941538173442915
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-08-25T03:42:54.283447"
+  },
+  {
+    "match_id": 161,
+    "municipality": "Ronse",
+    "permit_data": {
+      "id": 1021985,
+      "projectnummer": "2026099485",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Functiewijziging",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-08-23T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-08-24T00:00:00",
+      "vvo_huidige_toestand": "Ronse",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "lXLNh6rRQ9eblgp6Cj1DOw",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026099485",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026099485",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": null,
+      "NR": "195",
+      "TYPE": "PA",
+      "LENGTH": null,
+      "GEMID": "202",
+      "PLANID": "202-D-009",
+      "CEVI_OID": 10292,
+      "GEMEENTE": "Ronse",
+      "DETAILPLAN": null,
+      "TYPE_LABEL": "Deels afgeschaft bij verplaatsing",
+      "bron_bestand": "wijzigingen",
+      "IDWIJZIGIN": "202-00260",
+      "DATUM": "1994-01-13T01:00:00",
+      "LINK": "https://geodiensten.oost-vlaanderen.be/Bijlagen/Wijzigingen/202-00260-02.pdf"
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.570578342669146,
+              50.74882080964622
+            ],
+            [
+              3.5707998635512395,
+              50.74879872848216
+            ],
+            [
+              3.5707296740078327,
+              50.74858036230601
+            ],
+            [
+              3.570678627448233,
+              50.748421552142084
+            ],
+            [
+              3.5706442197045436,
+              50.74831450438458
+            ],
+            [
+              3.5704401103714365,
+              50.74834113611095
+            ],
+            [
+              3.5704239427799997,
+              50.74847832522346
+            ],
+            [
+              3.5704025140591518,
+              50.7486600881561
+            ],
+            [
+              3.5703941388256273,
+              50.74873124294438
+            ],
+            [
+              3.5703831002846065,
+              50.74883582335502
+            ],
+            [
+              3.570578342669146,
+              50.74882080964622
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.5703285683435038,
+              50.74823438333193
+            ],
+            [
+              3.5704752607834322,
+              50.74830955643264
+            ],
+            [
+              3.5710952294206457,
+              50.7485919279219
+            ],
+            [
+              3.5717732833980533,
+              50.74889671112949
+            ],
+            [
+              3.5724330597313974,
+              50.74920252491457
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-08-25T03:42:54.283485"
   }
 ]
