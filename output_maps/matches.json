@@ -52567,5 +52567,182 @@
       }
     ],
     "validated_at": "2026-09-01T08:13:12.225435"
+  },
+  {
+    "match_id": 177,
+    "municipality": "Kruisem",
+    "permit_data": {
+      "id": 1024169,
+      "projectnummer": "2026102757",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Nieuwbouw van bijgebouwen, niet-overdekte lage constructies en andere handelingen; Slopen van niet vrijstaande gebouwen of constructies; Verbouwen en/of uitbreiden zonder functiewijziging en zonder wijziging van aantal woongelegenheden; Verwijderen van vrijstaande bijgebouwen, niet-overdekte lage constructies of andere beperkte handelingen",
+      "aanvrager": "Goderis & Goemaere (0843889706); Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-09-01T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-09-02T00:00:00",
+      "vvo_huidige_toestand": "Kruisem",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "SplUN6ZpQme1K2wdKv7pKw",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026102757",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026102757",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 33095.0,
+      "NR": "64",
+      "TYPE": "s",
+      "LENGTH": 387.442,
+      "GEMID": "289",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/289-D-005.sid",
+      "CEVI_OID": 33066,
+      "GEMEENTE": "Zingem",
+      "DETAILPLAN": "289-D-005",
+      "TYPE_LABEL": "sentier",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.661950864754883,
+              50.90225960749976
+            ],
+            [
+              3.6619315189116732,
+              50.90215636044584
+            ],
+            [
+              3.661623802088325,
+              50.902184391547365
+            ],
+            [
+              3.6615473817046094,
+              50.90219135730977
+            ],
+            [
+              3.6613281572147596,
+              50.90221132583304
+            ],
+            [
+              3.6607575434411332,
+              50.90228085105973
+            ],
+            [
+              3.6607736739107564,
+              50.902341620231965
+            ],
+            [
+              3.6607853379507636,
+              50.90238556060376
+            ],
+            [
+              3.661555250712716,
+              50.90230236547225
+            ],
+            [
+              3.6616036238399357,
+              50.90229713679457
+            ],
+            [
+              3.66162039851515,
+              50.90229532289519
+            ],
+            [
+              3.661762641286364,
+              50.90227995204084
+            ],
+            [
+              3.661801573264862,
+              50.90227574526505
+            ],
+            [
+              3.661935186591083,
+              50.90226130218337
+            ],
+            [
+              3.661950864754883,
+              50.90225960749976
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.658592583729296,
+              50.89958772250124
+            ],
+            [
+              3.658918356936249,
+              50.899980235609235
+            ],
+            [
+              3.6590217048456024,
+              50.90005387029173
+            ],
+            [
+              3.6591994844458813,
+              50.90017430919181
+            ],
+            [
+              3.6592501632218273,
+              50.900216334933454
+            ],
+            [
+              3.659486276868678,
+              50.90060019266835
+            ],
+            [
+              3.6595403775956896,
+              50.900658463686604
+            ],
+            [
+              3.6598233776069,
+              50.900850228530906
+            ],
+            [
+              3.6603926664116337,
+              50.90125927183758
+            ],
+            [
+              3.6604250575353947,
+              50.901298869260366
+            ],
+            [
+              3.6604731553456107,
+              50.90139071104249
+            ],
+            [
+              3.660629003211904,
+              50.901750905979355
+            ],
+            [
+              3.660720558389957,
+              50.90199945857547
+            ],
+            [
+              3.6608046104481584,
+              50.90225955640332
+            ],
+            [
+              3.6609104438843185,
+              50.902655373628875
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-09-02T07:32:30.363865"
   }
 ]
