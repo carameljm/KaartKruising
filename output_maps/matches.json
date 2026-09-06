@@ -54028,5 +54028,134 @@
       }
     ],
     "validated_at": "2026-09-05T07:19:08.381625"
+  },
+  {
+    "match_id": 184,
+    "municipality": "Oudenaarde",
+    "permit_data": {
+      "id": 1023711,
+      "projectnummer": "2026100232",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Verbouwen en/of uitbreiden zonder functiewijziging en zonder wijziging van aantal woongelegenheden",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-09-05T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-09-06T00:00:00",
+      "vvo_huidige_toestand": "Oudenaarde",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "uEivM85GQra8qT0e5kQEcw",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026100232",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026100232",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": null,
+      "NR": "15",
+      "TYPE": "A",
+      "LENGTH": null,
+      "GEMID": "121",
+      "PLANID": "121-D-001",
+      "CEVI_OID": 5894,
+      "GEMEENTE": "Leupegem",
+      "DETAILPLAN": null,
+      "TYPE_LABEL": "Afschaffing",
+      "bron_bestand": "wijzigingen",
+      "IDWIJZIGIN": "121-00024",
+      "DATUM": "1934-02-09T01:00:00",
+      "LINK": "https://geodiensten.oost-vlaanderen.be/Bijlagen/Wijzigingen/121-00024-01.pdf"
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.601046130010479,
+              50.829176193213
+            ],
+            [
+              3.6010192121342266,
+              50.82909641033144
+            ],
+            [
+              3.600750033221939,
+              50.82913228113358
+            ],
+            [
+              3.6007464341097086,
+              50.829132761019075
+            ],
+            [
+              3.6004805692996698,
+              50.82916819440414
+            ],
+            [
+              3.600411673917979,
+              50.8291773806193
+            ],
+            [
+              3.600423477988481,
+              50.82921340007681
+            ],
+            [
+              3.600428791969776,
+              50.829229607947205
+            ],
+            [
+              3.6004377174277997,
+              50.829256753368306
+            ],
+            [
+              3.6007142624753388,
+              50.829220131379344
+            ],
+            [
+              3.600819830167195,
+              50.82920615956303
+            ],
+            [
+              3.600842633792017,
+              50.82920313531583
+            ],
+            [
+              3.601046130010479,
+              50.829176193213
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.600305164447777,
+              50.829051413282244
+            ],
+            [
+              3.600366541069264,
+              50.82910280760213
+            ],
+            [
+              3.600555291687806,
+              50.82931033152383
+            ],
+            [
+              3.600736704114345,
+              50.82951896590535
+            ],
+            [
+              3.600902313998637,
+              50.829686934440886
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-09-06T07:31:22.460281"
   }
 ]
