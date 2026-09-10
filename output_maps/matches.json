@@ -54945,5 +54945,162 @@
       }
     ],
     "validated_at": "2026-09-07T07:48:49.622488"
+  },
+  {
+    "match_id": 187,
+    "municipality": "Deinze",
+    "permit_data": {
+      "id": 999813,
+      "projectnummer": "2026058628",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bouwen of herbouwen; Nieuwbouw of aanleggen; Nieuwbouw van bijgebouwen en niet overdekte lage constructie; Slopen of verwijderen van een complex",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-09-09T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-09-10T00:00:00",
+      "vvo_huidige_toestand": "Deinze",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "mPdomVK8Q7SY_Ea3P_jz2Q",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026058628",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026058628",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 10090.0,
+      "NR": "85",
+      "TYPE": "s",
+      "LENGTH": 261.121,
+      "GEMID": "086",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/086-D-007.sid",
+      "CEVI_OID": 10076,
+      "GEMEENTE": "Hansbeke",
+      "DETAILPLAN": "086-D-007",
+      "TYPE_LABEL": "sentier",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.525908333448925,
+              51.0640626587377
+            ],
+            [
+              3.526197377938914,
+              51.064245988150454
+            ],
+            [
+              3.52598125667111,
+              51.064677260468955
+            ],
+            [
+              3.525966033169577,
+              51.06471061951622
+            ],
+            [
+              3.5258949492476317,
+              51.06486643858033
+            ],
+            [
+              3.5276253401865496,
+              51.064980931572734
+            ],
+            [
+              3.527594490864473,
+              51.064787446729106
+            ],
+            [
+              3.527586887429912,
+              51.064739766233934
+            ],
+            [
+              3.5275831594981915,
+              51.0647209516312
+            ],
+            [
+              3.527523645308469,
+              51.06442049422571
+            ],
+            [
+              3.527490385712592,
+              51.06422145459807
+            ],
+            [
+              3.5275155508660436,
+              51.064218308006424
+            ],
+            [
+              3.5274858032490575,
+              51.06407948698504
+            ],
+            [
+              3.5273835646367577,
+              51.06355665743764
+            ],
+            [
+              3.527323956381304,
+              51.06345529821555
+            ],
+            [
+              3.5272843955167925,
+              51.06342043339058
+            ],
+            [
+              3.52712995915062,
+              51.06348271615965
+            ],
+            [
+              3.526377576632353,
+              51.06383830790645
+            ],
+            [
+              3.525908333448925,
+              51.0640626587377
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.5277434906557685,
+              51.06566777292186
+            ],
+            [
+              3.5276718618453566,
+              51.06515041569182
+            ],
+            [
+              3.527520239584174,
+              51.06427440345321
+            ],
+            [
+              3.52756990924505,
+              51.064273599011045
+            ],
+            [
+              3.527391015018826,
+              51.06358512455241
+            ],
+            [
+              3.527247449315946,
+              51.06338709654369
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-09-10T07:48:01.885937"
   }
 ]
