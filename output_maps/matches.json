@@ -63575,5 +63575,198 @@
       }
     ],
     "validated_at": "2026-09-27T08:51:49.956598"
+  },
+  {
+    "match_id": 219,
+    "municipality": "Geraardsbergen",
+    "permit_data": {
+      "id": 1025752,
+      "projectnummer": "2026101231",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bouwen of herbouwen; Nieuwbouw van bijgebouwen en niet overdekte lage constructie",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-09-27T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-09-28T00:00:00",
+      "vvo_huidige_toestand": "Geraardsbergen",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "2WceQltiQcuMfvSfUy-Dcg",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026101231",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026101231",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": null,
+      "NR": "5",
+      "TYPE": "B",
+      "LENGTH": null,
+      "GEMID": "281",
+      "PLANID": "281-D-006",
+      "CEVI_OID": 14122,
+      "GEMEENTE": "Zandbergen",
+      "DETAILPLAN": null,
+      "TYPE_LABEL": "Verbreding",
+      "bron_bestand": "wijzigingen",
+      "IDWIJZIGIN": "281-00015",
+      "DATUM": "1950-03-07T01:00:00",
+      "LINK": "https://geodiensten.oost-vlaanderen.be/Bijlagen/Wijzigingen/281-00015-01.pdf"
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.9451839679542324,
+              50.783603864416264
+            ],
+            [
+              3.9452526016057337,
+              50.78370965257084
+            ],
+            [
+              3.945276813013458,
+              50.78374696677292
+            ],
+            [
+              3.9452933454995462,
+              50.78377245862157
+            ],
+            [
+              3.9453049626104617,
+              50.78376578516637
+            ],
+            [
+              3.945352286025829,
+              50.78373862694964
+            ],
+            [
+              3.9453560633724867,
+              50.78373645605866
+            ],
+            [
+              3.945475085507956,
+              50.7836680236155
+            ],
+            [
+              3.9454796186654018,
+              50.78366537898762
+            ],
+            [
+              3.945849999049838,
+              50.78344894559118
+            ],
+            [
+              3.946041018047509,
+              50.78333735130842
+            ],
+            [
+              3.9459088972491076,
+              50.783241070759445
+            ],
+            [
+              3.9458675761497397,
+              50.783210958776074
+            ],
+            [
+              3.9457422984704187,
+              50.783282964988004
+            ],
+            [
+              3.9451909809718537,
+              50.78359983533255
+            ],
+            [
+              3.9451839679542324,
+              50.783603864416264
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.94601305266375,
+              50.784277604348574
+            ],
+            [
+              3.9459058654825934,
+              50.78420304944439
+            ],
+            [
+              3.945733266132445,
+              50.78408422021757
+            ],
+            [
+              3.9456207925453426,
+              50.78398762634554
+            ],
+            [
+              3.9455464597076224,
+              50.78391898442768
+            ],
+            [
+              3.9452972781772835,
+              50.7835750529954
+            ],
+            [
+              3.945128827646131,
+              50.783401770355766
+            ],
+            [
+              3.944991703717421,
+              50.783200786148775
+            ],
+            [
+              3.9448435086169495,
+              50.783011351426666
+            ],
+            [
+              3.944676328123174,
+              50.78290065256769
+            ],
+            [
+              3.944465432460241,
+              50.78277241176479
+            ],
+            [
+              3.944154074918043,
+              50.78263569549443
+            ],
+            [
+              3.943923033229703,
+              50.782512015925555
+            ],
+            [
+              3.943757475518857,
+              50.782424500040435
+            ],
+            [
+              3.943659403600399,
+              50.782353452400336
+            ],
+            [
+              3.9435364316996377,
+              50.782205827283555
+            ],
+            [
+              3.943420867077371,
+              50.78204779890292
+            ],
+            [
+              3.9432891748683763,
+              50.78185378590793
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-09-28T09:16:13.963289"
   }
 ]
