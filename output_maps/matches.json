@@ -68365,5 +68365,572 @@
       }
     ],
     "validated_at": "2026-10-12T10:07:17.709388"
+  },
+  {
+    "match_id": 241,
+    "municipality": "Maarkedal",
+    "permit_data": {
+      "id": 997416,
+      "projectnummer": "2026054084",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bouwen of herbouwen; Verbouwen en/of uitbreiden zonder functiewijziging en zonder wijziging van aantal woongelegenheden",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-10-12T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-10-13T00:00:00",
+      "vvo_huidige_toestand": "Maarkedal",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "d8BX8xLHRPKM7tn8N34bwA",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026054084",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026054084",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": null,
+      "NR": "88",
+      "TYPE": "A",
+      "LENGTH": null,
+      "GEMID": "066",
+      "PLANID": "066-D-004",
+      "CEVI_OID": 14732,
+      "GEMEENTE": "Etikhove",
+      "DETAILPLAN": null,
+      "TYPE_LABEL": "Afschaffing",
+      "bron_bestand": "wijzigingen",
+      "IDWIJZIGIN": "066-00009",
+      "DATUM": "1848-11-30T01:00:00",
+      "LINK": "https://geodiensten.oost-vlaanderen.be/Bijlagen/Wijzigingen/066-00009-01.pdf"
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.621935501133228,
+              50.80513656224282
+            ],
+            [
+              3.6219399110054664,
+              50.805101825730524
+            ],
+            [
+              3.621937749876594,
+              50.80510211763157
+            ],
+            [
+              3.621936043699694,
+              50.805102349499094
+            ],
+            [
+              3.6218406209498704,
+              50.80512366861781
+            ],
+            [
+              3.621642243227945,
+              50.80516799372549
+            ],
+            [
+              3.620123010280521,
+              50.805507435493766
+            ],
+            [
+              3.620167281236181,
+              50.805585626008536
+            ],
+            [
+              3.6202068601908963,
+              50.80565553367511
+            ],
+            [
+              3.6206369821157334,
+              50.80555854224715
+            ],
+            [
+              3.6206744726114333,
+              50.805550078994486
+            ],
+            [
+              3.6214653694137127,
+              50.8053717145731
+            ],
+            [
+              3.621548949603844,
+              50.80535286449889
+            ],
+            [
+              3.6217326691400777,
+              50.80531143088602
+            ],
+            [
+              3.621830971603638,
+              50.80528926714657
+            ],
+            [
+              3.6218891215741515,
+              50.8052761523599
+            ],
+            [
+              3.621908016123034,
+              50.80527188552632
+            ],
+            [
+              3.621935501133228,
+              50.80513656224282
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.6209251940589735,
+              50.80468272749606
+            ],
+            [
+              3.6208044564691932,
+              50.80491490107491
+            ],
+            [
+              3.620595004143636,
+              50.80532034780954
+            ],
+            [
+              3.620456366761722,
+              50.80564280376456
+            ],
+            [
+              3.62036368258264,
+              50.80583575237439
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-10-13T10:00:20.475608"
+  },
+  {
+    "match_id": 242,
+    "municipality": "Deinze",
+    "permit_data": {
+      "id": 1033860,
+      "projectnummer": "2026115862",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Verbouwen en/of uitbreiden zonder functiewijziging en zonder wijziging van aantal woongelegenheden",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-10-12T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-10-13T00:00:00",
+      "vvo_huidige_toestand": "Deinze",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "bz14S9QMQ_6J1HsjmYw1cg",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026115862",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026115862",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 22729.0,
+      "NR": "5",
+      "TYPE": "c",
+      "LENGTH": 1097.687,
+      "GEMID": "198",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/198-D-004.sid",
+      "CEVI_OID": 22704,
+      "GEMEENTE": "Poesele",
+      "DETAILPLAN": "198-D-004",
+      "TYPE_LABEL": "chemin",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.525738664487577,
+              51.027578854384636
+            ],
+            [
+              3.5262383629520078,
+              51.027679542852276
+            ],
+            [
+              3.526193364461966,
+              51.02775617203272
+            ],
+            [
+              3.526254797260007,
+              51.027780343807834
+            ],
+            [
+              3.526123108511976,
+              51.027881793662296
+            ],
+            [
+              3.526348245212098,
+              51.02795846647729
+            ],
+            [
+              3.5267543414218996,
+              51.0273344436795
+            ],
+            [
+              3.5259467067389507,
+              51.027160968958015
+            ],
+            [
+              3.525738664487577,
+              51.027578854384636
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.5334502220793973,
+              51.026087072039985
+            ],
+            [
+              3.5325031033268073,
+              51.02654158215496
+            ],
+            [
+              3.532063116086065,
+              51.026792249274266
+            ],
+            [
+              3.5313830554428063,
+              51.02721156257036
+            ],
+            [
+              3.5308391585249534,
+              51.027311993426736
+            ],
+            [
+              3.5305832194915614,
+              51.02734030359436
+            ],
+            [
+              3.530165942767358,
+              51.02734776445265
+            ],
+            [
+              3.5293847547053923,
+              51.02735842685019
+            ],
+            [
+              3.5286957290136827,
+              51.02735351672404
+            ],
+            [
+              3.5284235219881683,
+              51.02736664147178
+            ],
+            [
+              3.5282099265529094,
+              51.02739061252221
+            ],
+            [
+              3.5278649383470917,
+              51.02746579514557
+            ],
+            [
+              3.5276983660964643,
+              51.02753182062807
+            ],
+            [
+              3.527525462194472,
+              51.02754101611499
+            ],
+            [
+              3.527432357429707,
+              51.027506743807585
+            ],
+            [
+              3.526680221802504,
+              51.027332177236794
+            ],
+            [
+              3.5265285082458795,
+              51.027287056528614
+            ],
+            [
+              3.525223301426798,
+              51.0270077051479
+            ],
+            [
+              3.5248663246246736,
+              51.0269321401085
+            ],
+            [
+              3.5243073200180026,
+              51.026850492185886
+            ],
+            [
+              3.5235288762430272,
+              51.0268113032981
+            ],
+            [
+              3.523196373040856,
+              51.026805441475496
+            ],
+            [
+              3.5230840838416007,
+              51.02681622413931
+            ],
+            [
+              3.5230194410062436,
+              51.026834302139974
+            ],
+            [
+              3.522943313302985,
+              51.02687779217574
+            ],
+            [
+              3.5228644070229245,
+              51.02697341179031
+            ],
+            [
+              3.522216291202185,
+              51.0278576068171
+            ],
+            [
+              3.5220064119930115,
+              51.02818405739127
+            ],
+            [
+              3.5218802462546,
+              51.02835234485137
+            ],
+            [
+              3.5217844633060382,
+              51.02846638348346
+            ],
+            [
+              3.5216779284706456,
+              51.028565279978935
+            ],
+            [
+              3.521509708067388,
+              51.02872167622851
+            ],
+            [
+              3.52122977345005,
+              51.02926317062816
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-10-13T10:00:20.475652"
+  },
+  {
+    "match_id": 243,
+    "municipality": "Maarkedal",
+    "permit_data": {
+      "id": 1034899,
+      "projectnummer": "2026118950",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Verbouwen en/of uitbreiden met functiewijziging, maar zonder wijziging van het aantal woongelegenheden",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-10-12T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-10-13T00:00:00",
+      "vvo_huidige_toestand": "Maarkedal",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "RzBCwuWPQbWVL0h9YkppYA",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026118950",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026118950",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 24209.0,
+      "NR": "155",
+      "TYPE": "c",
+      "LENGTH": 284.29,
+      "GEMID": "210",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/210-D-010.sid",
+      "CEVI_OID": 24183,
+      "GEMEENTE": "Schorisse",
+      "DETAILPLAN": "210-D-010",
+      "TYPE_LABEL": "chemin",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.693198858211569,
+              50.78129717088771
+            ],
+            [
+              3.694649585141217,
+              50.78140563463463
+            ],
+            [
+              3.694653878605088,
+              50.78138404726712
+            ],
+            [
+              3.69467761928007,
+              50.78126488594744
+            ],
+            [
+              3.694689566639808,
+              50.7812048742056
+            ],
+            [
+              3.6946989257219296,
+              50.781165210020724
+            ],
+            [
+              3.6947076205372658,
+              50.78112836488812
+            ],
+            [
+              3.694724692953058,
+              50.78105603029248
+            ],
+            [
+              3.694725734692167,
+              50.78105160419206
+            ],
+            [
+              3.6947414637366105,
+              50.78098495256477
+            ],
+            [
+              3.694741675228195,
+              50.78098404578662
+            ],
+            [
+              3.694785420510994,
+              50.7807986709259
+            ],
+            [
+              3.6947875273299022,
+              50.780787193765796
+            ],
+            [
+              3.694803337071191,
+              50.78070100723179
+            ],
+            [
+              3.6948063206013395,
+              50.78068474341932
+            ],
+            [
+              3.6948075670549656,
+              50.78067790017367
+            ],
+            [
+              3.6947960003203435,
+              50.78067364432
+            ],
+            [
+              3.694555933497638,
+              50.78058539320178
+            ],
+            [
+              3.6934254639346173,
+              50.78016977664637
+            ],
+            [
+              3.693301207216292,
+              50.78078796232108
+            ],
+            [
+              3.693198858211569,
+              50.78129717088771
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.6906066784956417,
+              50.77953130904816
+            ],
+            [
+              3.690655894729048,
+              50.779540865177786
+            ],
+            [
+              3.6908191946236615,
+              50.779625252570256
+            ],
+            [
+              3.691097144767651,
+              50.77974506973509
+            ],
+            [
+              3.691310094580919,
+              50.77980888201818
+            ],
+            [
+              3.691488635212721,
+              50.77985047580625
+            ],
+            [
+              3.691867465795375,
+              50.77994653602509
+            ],
+            [
+              3.692195336397862,
+              50.78002723540452
+            ],
+            [
+              3.692730994480985,
+              50.780149694437064
+            ],
+            [
+              3.6930078893678444,
+              50.78021619085842
+            ],
+            [
+              3.693366919521431,
+              50.78029127155225
+            ],
+            [
+              3.694012003191508,
+              50.7804317390841
+            ],
+            [
+              3.6942846491447527,
+              50.78053992899331
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-10-13T10:00:20.475732"
   }
 ]
