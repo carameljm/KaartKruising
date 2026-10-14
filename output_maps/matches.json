@@ -68932,5 +68932,174 @@
       }
     ],
     "validated_at": "2026-10-13T10:00:20.475732"
+  },
+  {
+    "match_id": 244,
+    "municipality": "Geraardsbergen",
+    "permit_data": {
+      "id": 1035387,
+      "projectnummer": "2026119920",
+      "project_type_code": "OMV2017_VK_NIEUW",
+      "handeling_omschrijving": "Nieuwe verkaveling",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag nieuwe verkaveling",
+      "datum_indiening": "2026-10-13T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-10-14T00:00:00",
+      "vvo_huidige_toestand": "Geraardsbergen",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "M7UmnTvhTEiQdA2uK0jpLQ",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026119920",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026119920",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": null,
+      "NR": "40",
+      "TYPE": "A",
+      "LENGTH": null,
+      "GEMID": "072",
+      "PLANID": "072-D-002",
+      "CEVI_OID": 3563,
+      "GEMEENTE": "Geraardsbergen",
+      "DETAILPLAN": null,
+      "TYPE_LABEL": "Afschaffing",
+      "bron_bestand": "wijzigingen",
+      "IDWIJZIGIN": "072-00004",
+      "DATUM": "1863-07-17T01:00:00",
+      "LINK": "https://geodiensten.oost-vlaanderen.be/Bijlagen/Wijzigingen/072-00004-01.pdf"
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.8886251539929924,
+              50.764562029683965
+            ],
+            [
+              3.889166663362589,
+              50.76496472781739
+            ],
+            [
+              3.88933555471071,
+              50.76486050647785
+            ],
+            [
+              3.889328098045974,
+              50.764854992151406
+            ],
+            [
+              3.888795232705539,
+              50.76445950407709
+            ],
+            [
+              3.8886251539929924,
+              50.764562029683965
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.888076130607864,
+              50.76491759499034
+            ],
+            [
+              3.8883720391092065,
+              50.76474960806806
+            ],
+            [
+              3.88875796519203,
+              50.76453447377347
+            ],
+            [
+              3.8887436303681464,
+              50.76450660124789
+            ],
+            [
+              3.888715350039586,
+              50.764412614768084
+            ],
+            [
+              3.8887014871438494,
+              50.76433838777014
+            ],
+            [
+              3.888672406308339,
+              50.76414357361326
+            ],
+            [
+              3.8886442089268933,
+              50.76404147496307
+            ],
+            [
+              3.888623321252896,
+              50.76393940533907
+            ],
+            [
+              3.888586730854372,
+              50.76376426174543
+            ],
+            [
+              3.8885483033294,
+              50.763590268505745
+            ],
+            [
+              3.8885255640155267,
+              50.7634905097615
+            ],
+            [
+              3.8884872903556627,
+              50.76330145184631
+            ],
+            [
+              3.888452315524773,
+              50.763147174957865
+            ],
+            [
+              3.888425112091323,
+              50.76294773227397
+            ],
+            [
+              3.8884151637468047,
+              50.762848025893774
+            ],
+            [
+              3.8884046724885346,
+              50.76280162649218
+            ],
+            [
+              3.888390456437903,
+              50.76276216551498
+            ],
+            [
+              3.888391082037724,
+              50.762700746385434
+            ],
+            [
+              3.888391412550233,
+              50.76266829779673
+            ],
+            [
+              3.88838463576392,
+              50.762616119619615
+            ],
+            [
+              3.8883942428466653,
+              50.76256980346176
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-10-14T08:18:59.317457"
   }
 ]
