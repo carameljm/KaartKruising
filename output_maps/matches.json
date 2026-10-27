@@ -73330,5 +73330,383 @@
       }
     ],
     "validated_at": "2026-10-22T08:14:13.282228"
+  },
+  {
+    "match_id": 264,
+    "municipality": "Deinze",
+    "permit_data": {
+      "id": 1037550,
+      "projectnummer": "2026121328",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bouwen of herbouwen; Het reli\u00ebf van de bodem aanmerkelijk wijzigen; Nieuwbouw van bijgebouwen en niet overdekte lage constructie",
+      "aanvrager": "DSL Future Homes (0699991788); Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-10-26T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-10-27T00:00:00",
+      "vvo_huidige_toestand": "Deinze",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "vQ62e53JQm-eaKo2skVVvQ",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026121328",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026121328",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 1418.0,
+      "NR": "9999",
+      "TYPE": "gra",
+      "LENGTH": 1242.656,
+      "GEMID": "011",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/011-D-006.sid",
+      "CEVI_OID": 1418,
+      "GEMEENTE": "Astene",
+      "DETAILPLAN": "011-D-006",
+      "TYPE_LABEL": "grande route",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.558224634357147,
+              50.9836327004691
+            ],
+            [
+              3.558353214626781,
+              50.983658702816044
+            ],
+            [
+              3.5583711663978015,
+              50.98366240428221
+            ],
+            [
+              3.5584299222559785,
+              50.983674252579696
+            ],
+            [
+              3.5584475349189844,
+              50.98367779887543
+            ],
+            [
+              3.55851743085904,
+              50.98369194425543
+            ],
+            [
+              3.558577887672927,
+              50.983704262658534
+            ],
+            [
+              3.558594009350434,
+              50.98370755595013
+            ],
+            [
+              3.5587172474303697,
+              50.98373284690652
+            ],
+            [
+              3.558746460182658,
+              50.98368813546712
+            ],
+            [
+              3.5587638238803714,
+              50.98366156457666
+            ],
+            [
+              3.558796562276555,
+              50.98361143862553
+            ],
+            [
+              3.5587996048970867,
+              50.98360678492531
+            ],
+            [
+              3.5588431092294015,
+              50.98354020100866
+            ],
+            [
+              3.5588640129298494,
+              50.9835082067107
+            ],
+            [
+              3.558864100852565,
+              50.98350806348069
+            ],
+            [
+              3.5588645545508766,
+              50.98350735641716
+            ],
+            [
+              3.5587203137582692,
+              50.98347775887803
+            ],
+            [
+              3.558343931843102,
+              50.98340052721546
+            ],
+            [
+              3.5583438607988827,
+              50.98340051773672
+            ],
+            [
+              3.558327665232832,
+              50.983432832026
+            ],
+            [
+              3.558327635510637,
+              50.98343290373883
+            ],
+            [
+              3.5583250101129478,
+              50.98343813563908
+            ],
+            [
+              3.5582919002797855,
+              50.98350231876752
+            ],
+            [
+              3.5582713006485323,
+              50.98354224395795
+            ],
+            [
+              3.558224634357147,
+              50.9836327004691
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.5466045553785044,
+              50.98120503608233
+            ],
+            [
+              3.55098591848209,
+              50.981879889352435
+            ],
+            [
+              3.5521461365166878,
+              50.98209306374845
+            ],
+            [
+              3.553137748688947,
+              50.98228999366399
+            ],
+            [
+              3.555103690444636,
+              50.98272890530939
+            ],
+            [
+              3.556444093661392,
+              50.98303483402742
+            ],
+            [
+              3.5584903489183173,
+              50.98350437338234
+            ],
+            [
+              3.560367081914432,
+              50.983905497966084
+            ],
+            [
+              3.5634601681377944,
+              50.98457334749398
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-10-27T08:34:31.426638"
+  },
+  {
+    "match_id": 265,
+    "municipality": "Oudenaarde",
+    "permit_data": {
+      "id": 1038029,
+      "projectnummer": "2026122543",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bouwen of herbouwen; Functiewijziging; Slopen van niet vrijstaande gebouwen of constructies",
+      "aanvrager": "MADHOVER (0473989015); Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-10-26T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-10-27T00:00:00",
+      "vvo_huidige_toestand": "Oudenaarde",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "yUStxj5qRoefoYx0iEWyRA",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026122543",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026122543",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 16158.0,
+      "NR": "54",
+      "TYPE": "s",
+      "LENGTH": 381.965,
+      "GEMID": "133",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/133-D-007.sid",
+      "CEVI_OID": 16140,
+      "GEMEENTE": "Melden",
+      "DETAILPLAN": "133-D-007",
+      "TYPE_LABEL": "sentier",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.5673864881357638,
+              50.8137504584563
+            ],
+            [
+              3.567452879865431,
+              50.81381991116257
+            ],
+            [
+              3.567522534098914,
+              50.81389278437778
+            ],
+            [
+              3.5675522947340736,
+              50.81392425528386
+            ],
+            [
+              3.56755823292202,
+              50.81393053498471
+            ],
+            [
+              3.56756421306553,
+              50.81393685093228
+            ],
+            [
+              3.5676092392565435,
+              50.81398435657636
+            ],
+            [
+              3.5676065250599334,
+              50.81398541685216
+            ],
+            [
+              3.567648985444521,
+              50.81403027085146
+            ],
+            [
+              3.567662981076392,
+              50.8140450472941
+            ],
+            [
+              3.56771036431925,
+              50.814092479093
+            ],
+            [
+              3.567711178579397,
+              50.81409216100955
+            ],
+            [
+              3.5678406437818997,
+              50.814042538607744
+            ],
+            [
+              3.567781648709757,
+              50.81395614532242
+            ],
+            [
+              3.567726378364917,
+              50.813875198479856
+            ],
+            [
+              3.5677133915534083,
+              50.813856176608674
+            ],
+            [
+              3.567667252093455,
+              50.813809049974715
+            ],
+            [
+              3.5675641212059848,
+              50.81373461765203
+            ],
+            [
+              3.567493000984065,
+              50.81369786571998
+            ],
+            [
+              3.567386674270174,
+              50.81375036083669
+            ],
+            [
+              3.5673864881357638,
+              50.8137504584563
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.564070117407163,
+              50.81159725329643
+            ],
+            [
+              3.5641785298725357,
+              50.81167564562965
+            ],
+            [
+              3.5648420530309997,
+              50.812132178249485
+            ],
+            [
+              3.5654442522999465,
+              50.812538453853456
+            ],
+            [
+              3.5656487772191383,
+              50.81266617729498
+            ],
+            [
+              3.565962294445659,
+              50.81283868629036
+            ],
+            [
+              3.567040429317093,
+              50.81344175095791
+            ],
+            [
+              3.5673338572122244,
+              50.81361296004138
+            ],
+            [
+              3.5676818432510378,
+              50.81380308399374
+            ],
+            [
+              3.5678131736330663,
+              50.81404040287958
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-10-27T08:34:31.426666"
   }
 ]
