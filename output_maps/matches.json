@@ -77351,5 +77351,275 @@
       }
     ],
     "validated_at": "2026-10-31T09:12:06.495131"
+  },
+  {
+    "match_id": 279,
+    "municipality": "Kruisem",
+    "permit_data": {
+      "id": 1037728,
+      "projectnummer": "2026120272",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bouwen of herbouwen; Nieuwbouw van bijgebouwen en niet overdekte lage constructie; Nieuwbouw van bijgebouwen, niet-overdekte lage constructies en andere handelingen; Verwijderen van vrijstaande gebouwen",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-11-01T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-11-02T00:00:00",
+      "vvo_huidige_toestand": "Kruisem",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "OmSEJp0mRXGs5XN61-va9Q",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026120272",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026120272",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 30130.0,
+      "NR": "34",
+      "TYPE": "s",
+      "LENGTH": 541.117,
+      "GEMID": "266",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/266-D-005.sid",
+      "CEVI_OID": 30102,
+      "GEMEENTE": "Wannegem-Lede",
+      "DETAILPLAN": "266-D-005",
+      "TYPE_LABEL": "sentier",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.5542995907295043,
+              50.88547416384635
+            ],
+            [
+              3.5535575480660158,
+              50.885466562740184
+            ],
+            [
+              3.553554386078105,
+              50.88570625793704
+            ],
+            [
+              3.553697423858594,
+              50.8857065941521
+            ],
+            [
+              3.5542889877944424,
+              50.88570798195925
+            ],
+            [
+              3.5542980716202712,
+              50.885507703822235
+            ],
+            [
+              3.5542995907295043,
+              50.88547416384635
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.5512092809733256,
+              50.88468732741945
+            ],
+            [
+              3.5522106479995212,
+              50.88525868156203
+            ],
+            [
+              3.552401081780919,
+              50.8853701014652
+            ],
+            [
+              3.5525376651331833,
+              50.88541740722527
+            ],
+            [
+              3.552435104382603,
+              50.88594283985236
+            ],
+            [
+              3.5542454932892813,
+              50.88613851310493
+            ]
+          ],
+          [
+            [
+              3.554369810451029,
+              50.88551935859003
+            ],
+            [
+              3.55372499485492,
+              50.88551488677103
+            ],
+            [
+              3.5536711849760434,
+              50.88544845525042
+            ],
+            [
+              3.5525376651331833,
+              50.88541740722527
+            ]
+          ],
+          [
+            [
+              3.5505220054850963,
+              50.88459678358739
+            ],
+            [
+              3.5507143637313034,
+              50.88407081884544
+            ],
+            [
+              3.5508314869966924,
+              50.88376220437709
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-11-02T10:27:37.619701"
+  },
+  {
+    "match_id": 280,
+    "municipality": "Geraardsbergen",
+    "permit_data": {
+      "id": 1040386,
+      "projectnummer": "2026126960",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Bouwen of herbouwen; Het reli\u00ebf van de bodem aanmerkelijk wijzigen; Slopen van niet vrijstaande gebouwen of constructies",
+      "aanvrager": "LUMINA INVESTMENTS (1015400156); Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-11-01T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-11-02T00:00:00",
+      "vvo_huidige_toestand": "Geraardsbergen",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "PkrSrZ8WTxC-jsoo_xZHeg",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026126960",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026126960",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": null,
+      "NR": "12",
+      "TYPE": "A",
+      "LENGTH": null,
+      "GEMID": "150",
+      "PLANID": "150-D-003",
+      "CEVI_OID": 7661,
+      "GEMEENTE": "Moerbeke",
+      "DETAILPLAN": null,
+      "TYPE_LABEL": "Afschaffing",
+      "bron_bestand": "wijzigingen",
+      "IDWIJZIGIN": "150-00009",
+      "DATUM": "1965-06-18T01:00:00",
+      "LINK": "https://geodiensten.oost-vlaanderen.be/Bijlagen/Wijzigingen/150-00009-01.pdf"
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.9176747995911034,
+              50.751937944059996
+            ],
+            [
+              3.9178680521098856,
+              50.751936233303496
+            ],
+            [
+              3.918084883912768,
+              50.75193762449914
+            ],
+            [
+              3.918008410186568,
+              50.75181672194441
+            ],
+            [
+              3.9179752410685387,
+              50.751764273167566
+            ],
+            [
+              3.917933653873143,
+              50.75169854088999
+            ],
+            [
+              3.917931085170416,
+              50.75169448555506
+            ],
+            [
+              3.9179290915160445,
+              50.75169550273654
+            ],
+            [
+              3.917911230958824,
+              50.7517123530413
+            ],
+            [
+              3.9177330398393435,
+              50.75188041702711
+            ],
+            [
+              3.9176578621493796,
+              50.75193678211454
+            ],
+            [
+              3.917657762182193,
+              50.751936862638956
+            ],
+            [
+              3.9176560780279224,
+              50.75193811474427
+            ],
+            [
+              3.9176747995911034,
+              50.751937944059996
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.917909631514939,
+              50.751651953624965
+            ],
+            [
+              3.9180244948636624,
+              50.75186679191948
+            ],
+            [
+              3.918270730419752,
+              50.75228957967721
+            ],
+            [
+              3.918502820657833,
+              50.752663637612784
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-11-02T10:27:37.619813"
   }
 ]
