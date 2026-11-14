@@ -84664,5 +84664,327 @@
       }
     ],
     "validated_at": "2026-11-13T10:26:42.280062"
+  },
+  {
+    "match_id": 300,
+    "municipality": "Oudenaarde",
+    "permit_data": {
+      "id": 1033926,
+      "projectnummer": "2026111739",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Verbouwen en/of uitbreiden zonder functiewijziging en zonder wijziging van aantal woongelegenheden",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-11-12T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-11-14T00:00:00",
+      "vvo_huidige_toestand": "Oudenaarde",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "A6zkY59iQ5WGO0PqlpIdmQ",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026111739",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026111739",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": null,
+      "NR": "11",
+      "TYPE": "PN",
+      "LENGTH": null,
+      "GEMID": "132",
+      "PLANID": "132-D-011",
+      "CEVI_OID": 6738,
+      "GEMEENTE": "Mater",
+      "DETAILPLAN": null,
+      "TYPE_LABEL": "Nieuw deel bij verplaatsing",
+      "bron_bestand": "wijzigingen",
+      "IDWIJZIGIN": "132-00006",
+      "DATUM": "1883-07-13T01:00:00",
+      "LINK": "https://geodiensten.oost-vlaanderen.be/Bijlagen/Wijzigingen/132-00006-01.pdf"
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.6677056950243414,
+              50.83062229833329
+            ],
+            [
+              3.667619439512549,
+              50.830572194456714
+            ],
+            [
+              3.667269646559291,
+              50.830816806387595
+            ],
+            [
+              3.6672200570505975,
+              50.83085148087431
+            ],
+            [
+              3.6671512669705013,
+              50.83095625207942
+            ],
+            [
+              3.667143830034626,
+              50.8309675888975
+            ],
+            [
+              3.6671427937236487,
+              50.830969497561725
+            ],
+            [
+              3.6672680829236137,
+              50.83099316192185
+            ],
+            [
+              3.6673574458766836,
+              50.831010039779436
+            ],
+            [
+              3.6673599566205235,
+              50.831006350925115
+            ],
+            [
+              3.667413282585531,
+              50.830927647946055
+            ],
+            [
+              3.667403186552801,
+              50.830925007493676
+            ],
+            [
+              3.6673998918213297,
+              50.83092415173788
+            ],
+            [
+              3.6674820485911344,
+              50.83082921436249
+            ],
+            [
+              3.6675442707705352,
+              50.83075266813134
+            ],
+            [
+              3.6677056950243414,
+              50.83062229833329
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.6675310646293373,
+              50.830866559339945
+            ],
+            [
+              3.667189932702461,
+              50.83104067413316
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-11-14T09:44:46.183657"
+  },
+  {
+    "match_id": 301,
+    "municipality": "Zulte",
+    "permit_data": {
+      "id": 1043364,
+      "projectnummer": "2026131235",
+      "project_type_code": "OMV2019_AANVRAAG",
+      "handeling_omschrijving": "Verbouwen en/of uitbreiden van bijgebouwen, niet-overdekte lage constructies of wijzigen van andere beperkte handelingen; Verbouwen en/of uitbreiden zonder functiewijziging en zonder wijziging van aantal woongelegenheden; Verwijderen van vrijstaande gebouwen",
+      "aanvrager": "Natuurlijk perso(o)n(en)",
+      "omschrijving_projecttype": "Aanvraag omgevingsproject",
+      "datum_indiening": "2026-11-12T00:00:00",
+      "huidige_toestand": "In behandeling (in eerste aanleg)",
+      "datum_huidige_toestand": "2026-11-14T00:00:00",
+      "vvo_huidige_toestand": "Zulte",
+      "fase_huidige_toestand": "Eerste Aanleg",
+      "voorwerp_uuid": "gOO4Fu2-TCqMfTNVg-1Y2g",
+      "project_link": "https://omgevingsloket.omgeving.vlaanderen.be?project=2026131235",
+      "inzageloket_link": "https://omgevingsloketinzage.omgeving.vlaanderen.be/2026131235",
+      "inzage_status": "Nog niet gevalideerd op Inzageloket"
+    },
+    "road_data": {
+      "ID": 15223.0,
+      "NR": "18",
+      "TYPE": "c",
+      "LENGTH": 946.412,
+      "GEMID": "128",
+      "PLANID": "https://geodiensten.oost-vlaanderen.be/Bijlagen/detail/128-D-010.sid",
+      "CEVI_OID": 15205,
+      "GEMEENTE": "Machelen",
+      "DETAILPLAN": "128-D-010",
+      "TYPE_LABEL": "chemin",
+      "bron_bestand": "buurtwegen",
+      "IDWIJZIGIN": null,
+      "DATUM": "NaT",
+      "LINK": null
+    },
+    "road_count": 1,
+    "permit_geom": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              3.520304648174936,
+              50.949603829245646
+            ],
+            [
+              3.520119243512923,
+              50.949346299740185
+            ],
+            [
+              3.519332735966476,
+              50.95025455604044
+            ],
+            [
+              3.519636489833132,
+              50.950360293785025
+            ],
+            [
+              3.5196569395225423,
+              50.95036665336111
+            ],
+            [
+              3.519692277141871,
+              50.9503272902556
+            ],
+            [
+              3.5196939603143163,
+              50.950325504438844
+            ],
+            [
+              3.519880805638624,
+              50.95012650559776
+            ],
+            [
+              3.519969235984102,
+              50.95003231899142
+            ],
+            [
+              3.520340789854012,
+              50.949662433892804
+            ],
+            [
+              3.5203443257193565,
+              50.94965892639206
+            ],
+            [
+              3.520304648174936,
+              50.949603829245646
+            ]
+          ]
+        ]
+      ]
+    },
+    "road_geoms": [
+      {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.5213806332122433,
+              50.94673350430935
+            ],
+            [
+              3.5205516563390034,
+              50.94753411996414
+            ],
+            [
+              3.5204076912416298,
+              50.947480930857715
+            ],
+            [
+              3.5198450433803306,
+              50.947957813403434
+            ],
+            [
+              3.5195150080841673,
+              50.94825210824109
+            ],
+            [
+              3.5192736230222614,
+              50.94851343388713
+            ],
+            [
+              3.5192393473082495,
+              50.94858272001382
+            ],
+            [
+              3.519258811408866,
+              50.94862226300969
+            ],
+            [
+              3.5195257726119364,
+              50.94877252909552
+            ],
+            [
+              3.5201010104494275,
+              50.94912203109362
+            ],
+            [
+              3.5201277298285336,
+              50.949166261429795
+            ],
+            [
+              3.5200832351079328,
+              50.94929341890187
+            ],
+            [
+              3.5201165999698394,
+              50.94937594081023
+            ],
+            [
+              3.520353121921303,
+              50.94968823104268
+            ],
+            [
+              3.520657928917036,
+              50.9500798169789
+            ],
+            [
+              3.521104414164187,
+              50.95065205136692
+            ],
+            [
+              3.5217942654810064,
+              50.95156559257795
+            ],
+            [
+              3.5221996098402384,
+              50.95208074015878
+            ],
+            [
+              3.522489771953411,
+              50.952472215447024
+            ],
+            [
+              3.5229501222468405,
+              50.9530920565759
+            ],
+            [
+              3.5234774223554144,
+              50.95376452753823
+            ],
+            [
+              3.52360612856731,
+              50.95395319272605
+            ]
+          ]
+        ]
+      }
+    ],
+    "validated_at": "2026-11-14T09:44:46.183713"
   }
 ]
